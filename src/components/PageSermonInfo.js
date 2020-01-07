@@ -48,10 +48,10 @@ const PageSermonInfo = ({ className, match, location, history }: Props) => {
   useEffect(() => {
     /* some componentDiDMount code */
     if (!sermon_arg) {
-      async function componentDiDMount() {
+      async function componentDidMount() {
         setSermon(await backendService.getSermon(match.params.sermonId));
       }
-      componentDiDMount();
+      componentDidMount();
     }
   }, [sermon_arg, match.params.sermonId]);
 

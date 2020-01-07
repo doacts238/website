@@ -21,6 +21,7 @@ import {
   useMediaQuery
 } from '@material-ui/core';
 import { BrowserRouter } from 'react-router-dom';
+import AppMobile from './components/AppMobile';
 
 const useStyles = makeStyles(theme => {
   //console.log('theme: ', theme);
@@ -75,7 +76,7 @@ const AppWrapper = () => {
             page: {
               pageMinWidth: 10,
               pageMaxWidth: 120,
-              navListWidth: 16,
+              navListWidth: 20,
               appBarHeight: 8 // '64px'
             },
             palette: {
@@ -113,14 +114,21 @@ const AppWrapper = () => {
     [prefersDarkMode]
   );
 
+  const isMobile: Boolean = useMediaQuery(theme.breakpoints.down('sm'));
+  console.log('isMobile', isMobile);
+
   return (
     <React.StrictMode>
       <CssBaseline />
       <MuiThemeProvider theme={theme}>
         <BrowserRouter basename="/">
-          <ThemeDiv>
-            <App />
-          </ThemeDiv>
+          {isMobile ? (
+            <AppMobile />
+          ) : (
+            <ThemeDiv>
+              <App />
+            </ThemeDiv>
+          )}
         </BrowserRouter>
       </MuiThemeProvider>
     </React.StrictMode>
