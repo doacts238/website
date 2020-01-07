@@ -10,6 +10,10 @@
 // To learn more about the benefits of this model and instructions on how to
 // opt-in, read https://bit.ly/CRA-PWA
 
+// eslint-disable-next-line no-undef
+const PUBLIC_URL: string =
+  process.env.PUBLIC_URL != null ? process.env.PUBLIC_URL : '';
+
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
     // [::1] is the IPv6 localhost address.
@@ -20,10 +24,10 @@ const isLocalhost = Boolean(
     )
 );
 
-export function register(config) {
+export function register(config: any) {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
+    const publicUrl = new URL(PUBLIC_URL, window.location.href);
     if (publicUrl.origin !== window.location.origin) {
       // Our service worker won't work if PUBLIC_URL is on a different origin
       // from what our page is served on. This might happen if a CDN is used to
@@ -32,7 +36,7 @@ export function register(config) {
     }
 
     window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+      const swUrl = `${PUBLIC_URL}/service-worker.js`;
 
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.
@@ -40,6 +44,7 @@ export function register(config) {
 
         // Add some additional logging to localhost, pointing developers to the
         // service worker/PWA documentation.
+        //$FlowFixMe
         navigator.serviceWorker.ready.then(() => {
           console.log(
             'This web app is being served cache-first by a service ' +
@@ -55,6 +60,7 @@ export function register(config) {
 }
 
 function registerValidSW(swUrl, config) {
+  //$FlowFixMe
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
@@ -65,6 +71,7 @@ function registerValidSW(swUrl, config) {
         }
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
+            //$FlowFixMe
             if (navigator.serviceWorker.controller) {
               // At this point, the updated precached content has been fetched,
               // but the previous service worker will still serve the older
@@ -111,6 +118,7 @@ function checkValidServiceWorker(swUrl, config) {
         (contentType != null && contentType.indexOf('javascript') === -1)
       ) {
         // No service worker found. Probably a different app. Reload the page.
+        //$FlowFixMe
         navigator.serviceWorker.ready.then(registration => {
           registration.unregister().then(() => {
             window.location.reload();
@@ -130,6 +138,7 @@ function checkValidServiceWorker(swUrl, config) {
 
 export function unregister() {
   if ('serviceWorker' in navigator) {
+    //$FlowFixMe
     navigator.serviceWorker.ready.then(registration => {
       registration.unregister();
     });
