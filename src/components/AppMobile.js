@@ -43,6 +43,11 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 class AppMobile extends Component<Props, State> {
   state: State = { isDrawerOpen: false };
 
+  constructor(props) {
+    super(props);
+    this.contentRef = React.createRef();
+  }
+
   handleNavMenuButtonClick = () => {
     const { isDrawerOpen } = this.state;
     this.setDrawerOpen(!isDrawerOpen);
@@ -65,8 +70,10 @@ class AppMobile extends Component<Props, State> {
   };
 
   render() {
-    const { className, classes } = this.props;
+    const { className, classes, location } = this.props;
     const { isDrawerOpen } = this.state;
+
+    const urlMatch = location && location.pathname ? location.pathname : '';
 
     return (
       <div id="appRoot" className={classNames(className, classes.root)}>
@@ -90,25 +97,33 @@ class AppMobile extends Component<Props, State> {
         </AppBar>
         <Toolbar />
 
-        <Switch>
-          <Route
-            path="/doacts238"
-            exact
-            render={props => <PageDoActs238 {...props} />}
-          />
-          <Route
-            path="/services"
-            render={props => <PageServices {...props} />}
-          />
-          <Route
-            path="/sermons/:sermonId(\d+)"
-            exact
-            render={props => <PageSermonInfo {...props} />}
-          />
-          <Route path="/sermons" render={props => <PageSermons {...props} />} />
-          <Route path="/contact" render={props => <PageContact {...props} />} />
-          <Route path="/" exact render={props => <PageHome {...props} />} />
-        </Switch>
+        <div ref={this.contentRef} className={classes.content}>
+          <Switch>
+            <Route
+              path="/doacts238"
+              exact
+              render={props => <PageDoActs238 {...props} />}
+            />
+            <Route
+              path="/services"
+              render={props => <PageServices {...props} />}
+            />
+            <Route
+              path="/sermons/:sermonId(\d+)"
+              exact
+              render={props => <PageSermonInfo {...props} />}
+            />
+            <Route
+              path="/sermons"
+              render={props => <PageSermons {...props} />}
+            />
+            <Route
+              path="/contact"
+              render={props => <PageContact {...props} />}
+            />
+            <Route path="/" exact render={props => <PageHome {...props} />} />
+          </Switch>
+        </div>
 
         <SwipeableDrawer
           classes={{ paper: classes.navDrawer }}
@@ -121,32 +136,47 @@ class AppMobile extends Component<Props, State> {
           <List>
             <ListItem
               onClick={() => this.handleListItemClick('/')}
-              className={classes.navListItem}
+              className={classNames({
+                [classes.navListItem]: true,
+                [classes.navListItemSelected]: urlMatch === '/'
+              })}
             >
               <HomeIcon className={classes.navIcon} /> Home
             </ListItem>
             <ListItem
               onClick={() => this.handleListItemClick('/doacts238')}
-              className={classes.navListItem}
+              className={classNames({
+                [classes.navListItem]: true,
+                [classes.navListItemSelected]: urlMatch.startsWith('/doacts238')
+              })}
             >
               <QuestionIcon className={classes.navIcon} /> Do Acts 2:38?
             </ListItem>
             <ListItem
               onClick={() => this.handleListItemClick('/sermons')}
-              className={classes.navListItem}
+              className={classNames({
+                [classes.navListItem]: true,
+                [classes.navListItemSelected]: urlMatch.startsWith('/sermons')
+              })}
             >
               <SermonsIcon className={classes.navIcon} /> Online Sermons
             </ListItem>
             <ListItem
               onClick={() => this.handleListItemClick('/services')}
-              className={classes.navListItem}
+              className={classNames({
+                [classes.navListItem]: true,
+                [classes.navListItemSelected]: urlMatch.startsWith('/services')
+              })}
             >
               <ServicesIcon className={classes.navIcon} />{' '}
               <span>Service Times</span>
             </ListItem>
             <ListItem
               onClick={() => this.handleListItemClick('/contact')}
-              className={classes.navListItem}
+              className={classNames({
+                [classes.navListItem]: true,
+                [classes.navListItemSelected]: urlMatch.startsWith('/contact')
+              })}
             >
               <ContactIcon className={classes.navIcon} /> Contact Us
             </ListItem>
@@ -168,6 +198,10 @@ const styles = theme => ({
     flexGrow: 1
   },
   appBar: {},
+  content: {
+    height: '100%',
+    width: '100%'
+  },
   button: {
     margin: theme.spacing(1)
   },
@@ -179,10 +213,13 @@ const styles = theme => ({
     marginRight: theme.spacing(1)
   },
   navListItem: {
-    paddingRight: theme.spacing(1),
+    padding: 0,
+    margin: theme.spacing(2),
     width: theme.spacing(theme.app.page.navListWidth)
   },
-  content: {},
+  navListItemSelected: {
+    fontWeight: 'bold'
+  },
   menuButton: {},
   toolbar: theme.mixins.toolbar
 });

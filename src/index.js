@@ -20,7 +20,7 @@ import {
   makeStyles,
   useMediaQuery
 } from '@material-ui/core';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, withRouter } from 'react-router-dom';
 import AppMobile from './components/AppMobile';
 
 const useStyles = makeStyles(theme => {
@@ -63,6 +63,21 @@ const ThemeDiv = ({ children }) => {
     </div>
   );
 };
+
+// Overcome scroll position issue caused  by React Router.
+// See https://reacttraining.com/react-router/web/guides/scroll-restoration
+const ScrollToTop = withRouter(
+  class extends React.Component {
+    componentDidUpdate(prevProps) {
+      if (this.props.location.pathname !== prevProps.location.pathname) {
+        window.scrollTo(0, 0);
+      }
+    }
+    render() {
+      return null;
+    }
+  }
+);
 
 const AppWrapper = () => {
   let prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -115,13 +130,13 @@ const AppWrapper = () => {
   );
 
   const isMobile: Boolean = useMediaQuery(theme.breakpoints.down('sm'));
-  console.log('isMobile', isMobile);
 
   return (
     <React.StrictMode>
       <CssBaseline />
       <MuiThemeProvider theme={theme}>
         <BrowserRouter basename="/">
+          <ScrollToTop />
           {isMobile ? (
             <AppMobile />
           ) : (
