@@ -83,7 +83,7 @@ class AppMobile extends Component<Props, State> {
               </IconButton>
             </Hidden>
             <Typography variant="h6" noWrap>
-              Do Acts 2:38! Mobile
+              Do Acts 2:38!
             </Typography>
           </Toolbar>
         </AppBar>
