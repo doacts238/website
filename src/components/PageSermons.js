@@ -96,10 +96,12 @@ class PageSermons extends Component<Props, State> {
     return (
       <div className={classNames(className, classes.root)}>
         <Typography component="div" variant="body2">
-          <h1 style={{ marginTop: 0 }}>New Life Apostolic Pulpit</h1>
+          <h1 style={{ marginTop: 0 }}>Apostolic Pulpit</h1>
           <p>
-            These are sermons preached at New Life Worship Center. Most are by
-            Pastor David Brown. We would love to hear your{' '}
+            This a collection of sermons, Bible teachings, etc., mostly by
+            Pastor David Brown. They are prayerfully shared with hopes that the
+            Lord by His Word will make you perfect, stablish, strengthen, and
+            settle you. We would love to hear your{' '}
             <Link to="/contact" title="Contact Us">
               feedback
             </Link>{' '}
