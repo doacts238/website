@@ -55,15 +55,7 @@ const PageHome = ({ className }: Props) => {
         </Popper>
 
         <h1 style={{ marginTop: 0 }}>Welcome!</h1>
-        <p>
-          We at New Life Worship Center of Huntsville, Alabama, would like to
-          thank you for taking the time to visit our website.
-        </p>
-
-        <p>
-          The name "Bethel" means <i>House of God</i>, and "Apostolic" is to be{' '}
-          <i>like the Apostles</i>.
-        </p>
+        <p>Thank you for taking the time to visit our website.</p>
 
         <p>
           Believing that "a stream is purest at its source", we strive to follow
