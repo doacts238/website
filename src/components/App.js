@@ -5,11 +5,8 @@ import {
   Toolbar,
   IconButton,
   Hidden,
-  List,
-  ListItem,
   Container,
-  withStyles,
-  Slide
+  withStyles
 } from '@material-ui/core';
 
 import MenuIcon from 'mdi-react/MenuIcon';
@@ -24,6 +21,7 @@ import PageServices from './PageServices';
 import PageSermons from './PageSermons';
 import PageContact from './PageContact';
 import PageSermonInfo from './PageSermonInfo';
+import NavList from './NavList';
 
 type Props = {
   classes: Object,
@@ -103,13 +101,7 @@ class App extends Component<Props, State> {
 
   render() {
     const { className, classes } = this.props;
-    const { isNavListOpen, isLargeScreen, isMounted } = this.state;
-
-    const navListClasses = classNames({
-      [classes.navList]: true,
-      [classes.navListClosed]: !isMounted || !isNavListOpen,
-      [classes.navListOpen]: isMounted && isNavListOpen
-    });
+    const { isNavListOpen, isLargeScreen } = this.state;
 
     // Overcome scroll position issue caused  by React Router.
     // See https://reacttraining.com/react-router/web/guides/scroll-restoration
@@ -149,40 +141,10 @@ class App extends Component<Props, State> {
         <div ref={this.detectorRef} className={classes.detector} />
         <GridNoPadding id="app_grid_container" container spacing={0}>
           <GridNoPadding item>
-            <Slide direction="right" in={isNavListOpen}>
-              <List className={navListClasses}>
-                <ListItem
-                  onClick={() => this.handleListItemClick('/')}
-                  className={classes.navListItem}
-                >
-                  Home
-                </ListItem>
-                <ListItem
-                  onClick={() => this.handleListItemClick('/doacts238')}
-                  className={classes.navListItem}
-                >
-                  Do Acts 2:38?
-                </ListItem>
-                <ListItem
-                  onClick={() => this.handleListItemClick('/sermons')}
-                  className={classes.navListItem}
-                >
-                  Online Sermons
-                </ListItem>
-                <ListItem
-                  onClick={() => this.handleListItemClick('/services')}
-                  className={classes.navListItem}
-                >
-                  Service Times &amp; Directions
-                </ListItem>
-                <ListItem
-                  onClick={() => this.handleListItemClick('/contact')}
-                  className={classes.navListItem}
-                >
-                  Contact Us
-                </ListItem>
-              </List>
-            </Slide>
+            <NavList
+              classes={{ navListItem: classes.navListItem }}
+              handleListItemClick={this.handleListItemClick}
+            />
           </GridNoPadding>
           <GridNoPadding item xs>
             <Container
@@ -248,17 +210,10 @@ const styles = theme => ({
   button: {
     margin: theme.spacing(1)
   },
-  navListOpen: {
-    width: theme.spacing(theme.app.page.navListWidth)
-  },
-  navListClosed: {
-    width: 0
-  },
-  navList: {
-    overflow: 'hidden'
-  },
   navListItem: {
+    padding: theme.spacing(2),
     paddingRight: theme.spacing(1),
+    margin: 0,
     width: theme.spacing(theme.app.page.navListWidth)
   },
   content: {

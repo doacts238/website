@@ -91,7 +91,7 @@ const AppWrapper = () => {
             page: {
               pageMinWidth: 10,
               pageMaxWidth: 120,
-              navListWidth: 20,
+              navListWidth: 22,
               appBarHeight: 8 // '64px'
             },
             palette: {

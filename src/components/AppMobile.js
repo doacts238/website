@@ -5,19 +5,12 @@ import {
   Toolbar,
   IconButton,
   Hidden,
-  List,
-  ListItem,
   withStyles,
   SwipeableDrawer
 } from '@material-ui/core';
 
 import MenuIcon from 'mdi-react/MenuIcon';
 import CloseIcon from 'mdi-react/CloseIcon';
-import HomeIcon from 'mdi-react/HomeIcon';
-import QuestionIcon from 'mdi-react/HelpCircleIcon';
-import SermonsIcon from 'mdi-react/VolumeHighIcon';
-import ServicesIcon from 'mdi-react/CalendarClockIcon';
-import ContactIcon from 'mdi-react/ContactMailIcon';
 
 import classNames from 'classnames';
 import { Route, Switch, withRouter } from 'react-router-dom';
@@ -27,6 +20,7 @@ import PageServices from './PageServices';
 import PageSermons from './PageSermons';
 import PageContact from './PageContact';
 import PageSermonInfo from './PageSermonInfo';
+import NavList from './NavList';
 
 type Props = {
   classes: Object,
@@ -70,10 +64,8 @@ class AppMobile extends Component<Props, State> {
   };
 
   render() {
-    const { className, classes, location } = this.props;
+    const { className, classes } = this.props;
     const { isDrawerOpen } = this.state;
-
-    const urlMatch = location && location.pathname ? location.pathname : '';
 
     return (
       <div id="appRoot" className={classNames(className, classes.root)}>
@@ -133,54 +125,10 @@ class AppMobile extends Component<Props, State> {
           disableBackdropTransition={!iOS}
           disableDiscovery={iOS}
         >
-          <List>
-            <ListItem
-              onClick={() => this.handleListItemClick('/')}
-              className={classNames({
-                [classes.navListItem]: true,
-                [classes.navListItemSelected]: urlMatch === '/'
-              })}
-            >
-              <HomeIcon className={classes.navIcon} /> Home
-            </ListItem>
-            <ListItem
-              onClick={() => this.handleListItemClick('/doacts238')}
-              className={classNames({
-                [classes.navListItem]: true,
-                [classes.navListItemSelected]: urlMatch.startsWith('/doacts238')
-              })}
-            >
-              <QuestionIcon className={classes.navIcon} /> Do Acts 2:38?
-            </ListItem>
-            <ListItem
-              onClick={() => this.handleListItemClick('/sermons')}
-              className={classNames({
-                [classes.navListItem]: true,
-                [classes.navListItemSelected]: urlMatch.startsWith('/sermons')
-              })}
-            >
-              <SermonsIcon className={classes.navIcon} /> Online Sermons
-            </ListItem>
-            <ListItem
-              onClick={() => this.handleListItemClick('/services')}
-              className={classNames({
-                [classes.navListItem]: true,
-                [classes.navListItemSelected]: urlMatch.startsWith('/services')
-              })}
-            >
-              <ServicesIcon className={classes.navIcon} />{' '}
-              <span>Service Times</span>
-            </ListItem>
-            <ListItem
-              onClick={() => this.handleListItemClick('/contact')}
-              className={classNames({
-                [classes.navListItem]: true,
-                [classes.navListItemSelected]: urlMatch.startsWith('/contact')
-              })}
-            >
-              <ContactIcon className={classes.navIcon} /> Contact Us
-            </ListItem>
-          </List>
+          <NavList
+            classes={{ navListItem: classes.navListItem }}
+            handleListItemClick={this.handleListItemClick}
+          />
         </SwipeableDrawer>
       </div>
     );
@@ -208,17 +156,11 @@ const styles = theme => ({
   navDrawer: {
     background: theme.app.palette.background.default
   },
-  navIcon: {
-    color: theme.palette.secondary.dark,
-    marginRight: theme.spacing(1)
-  },
   navListItem: {
     padding: 0,
-    margin: theme.spacing(2),
+    margin: theme.spacing(3),
+    marginRight: theme.spacing(2),
     width: theme.spacing(theme.app.page.navListWidth)
-  },
-  navListItemSelected: {
-    fontWeight: 'bold'
   },
   menuButton: {},
   toolbar: theme.mixins.toolbar
