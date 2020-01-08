@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Typography, makeStyles } from '@material-ui/core';
-import mapImage from '../images/map.gif';
+import { Typography, makeStyles, Link } from '@material-ui/core';
+import MapMarkerIcon from 'mdi-react/MapMarkerIcon';
 
 import classNames from 'classnames';
 
@@ -12,69 +11,42 @@ type Props = {
 const PageServices = ({ className }: Props) => {
   const classes = useStyles();
 
-  document.title = 'Do Acts 2:38 - Service Times and Directions';
+  document.title = 'Do Acts 2:38 - Service Times';
 
   return (
     <div className={classNames(className, classes.root)}>
       <Typography component="div" variant="body2">
-        <h1 style={{ marginTop: 0 }}>Service Times &amp; Directions</h1>
-        <h2>Service Times</h2>
-        <div>
-          <table style={{ border: '0px solid black', marginLeft: '25px' }}>
-            <tbody>
-              <tr>
-                <th style={{ textAlign: 'right', verticalAlign: 'top' }}>
-                  Sunday Morning:
-                </th>
-                <td>9:45 - 12:30</td>
-              </tr>
-              <tr>
-                <th style={{ textAlign: 'right', verticalAlign: 'top' }}>
-                  Sunday Night:
-                </th>
-                <td>6:00 - 8:30</td>
-              </tr>
-              <tr>
-                <th style={{ textAlign: 'right', verticalAlign: 'top' }}>
-                  Wednesday Night:
-                </th>
-                <td>7:00 - 8:30</td>
-              </tr>
-            </tbody>
-          </table>
+        <h1 style={{ marginTop: 0 }}>Service Times</h1>
+        <div style={{ marginLeft: '25px' }}>
+          <div style={{ fontWeight: 'bold' }}>Sunday Morning:</div>
+          <div style={{ marginLeft: '25px' }}>10:30 - 12:00</div>
+          <div style={{ fontWeight: 'bold', marginTop: '10px' }}>
+            Wednesday Night:
+          </div>
+          <div style={{ marginLeft: '25px' }}>7:00 - 8:30</div>
         </div>
-        <h2>Directions</h2>
-        <p>
-          The Church is located at 403 Treymore Avenue in Huntsville, AL. Please
-          fee free to{' '}
-          <Link to="/contact" title="Contact Us">
-            Contact Us
-          </Link>{' '}
-          if you need a ride from the Church Bus Ministry.
-        </p>
-        <p>
-          <img
-            src={mapImage}
-            alt="Map to New Life Worship Center in Huntsville, AL."
-          />
-        </p>
-        <h3>From South Memorial Parkway:</h3>
-        <ol>
-          <li>
-            <b>Go North on Memorial Parkway.</b> Go past Oakwood and Max Luther.
-          </li>
-          <li>
-            <b>Turn Right onto Sparkman Drive</b> (Hwy 72 E) at the Hardee's. Go
-            through the light at Washington Street.
-          </li>
-          <li>
-            <b>Turn Left on Mastin Lake</b> at the light.
-          </li>
-          <li>
-            <b>Turn Right onto Treymore Ave</b> which is second street to the
-            right.
-          </li>
-        </ol>
+
+        <h3 style={{ marginBottom: '10px' }}>Street Address:</h3>
+        <div style={{ marginLeft: '25px' }}>
+          New Life Worship Center
+          <br />
+          27390 Thach Rd
+          <br />
+          Elkmont, AL 35620
+          <br />
+          <div className={classes.markerLink}>
+            <MapMarkerIcon style={{ color: 'darkred', marginRight: '5px' }} />
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://goo.gl/maps/pSgrYs2SEyRocjiF8"
+              variant="button"
+              underline="hover"
+            >
+              Show on Google Maps
+            </Link>
+          </div>
+        </div>
       </Typography>
     </div>
   );
@@ -88,6 +60,13 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3),
     width: '100%',
     minHeight: '100%'
+  },
+  markerLink: {
+    margin: 0,
+    padding: 0,
+    marginTop: theme.spacing(2),
+    display: 'flex',
+    alignItems: 'center'
   }
 }));
 
