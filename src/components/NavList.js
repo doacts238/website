@@ -41,7 +41,7 @@ const NavList = (props: Props) => {
         <HomeIcon className={classes.navIcon} />
         <Typography
           variant={itemVariant}
-          className={classNames({
+          className={classNames(classes.hoverPointer, {
             [classes.navListItemSelected]: urlMatch === '/'
           })}
         >
@@ -55,7 +55,7 @@ const NavList = (props: Props) => {
         <QuestionIcon className={classes.navIcon} />
         <Typography
           variant={itemVariant}
-          className={classNames({
+          className={classNames(classes.hoverPointer, {
             [classes.navListItemSelected]: urlMatch.startsWith('/doacts238')
           })}
         >
@@ -69,7 +69,7 @@ const NavList = (props: Props) => {
         <SermonsIcon className={classes.navIcon} />
         <Typography
           variant={itemVariant}
-          className={classNames({
+          className={classNames(classes.hoverPointer, {
             [classes.navListItemSelected]: urlMatch.startsWith('/sermons')
           })}
         >
@@ -83,7 +83,7 @@ const NavList = (props: Props) => {
         <ServicesIcon className={classes.navIcon} />
         <Typography
           variant={itemVariant}
-          className={classNames({
+          className={classNames(classes.hoverPointer, {
             [classes.navListItemSelected]: urlMatch.startsWith('/services')
           })}
         >
@@ -97,7 +97,7 @@ const NavList = (props: Props) => {
         <ContactIcon className={classes.navIcon} />
         <Typography
           variant={itemVariant}
-          className={classNames({
+          className={classNames(classes.hoverPointer, {
             [classes.navListItemSelected]: urlMatch.startsWith('/contact')
           })}
         >
@@ -113,6 +113,11 @@ const styles = theme => ({
   navIcon: {
     color: theme.palette.secondary.dark,
     marginRight: theme.spacing(1)
+  },
+  hoverPointer: {
+    '&:hover': {
+      cursor: 'pointer'
+    }
   },
   navListItem: {
     padding: 0,
