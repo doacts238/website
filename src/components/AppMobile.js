@@ -39,7 +39,7 @@ class AppMobile extends Component<Props, State> {
 
   constructor(props) {
     super(props);
-    this.contentRef = React.createRef();
+    this.refAppBar = React.createRef();
   }
 
   handleNavMenuButtonClick = () => {
@@ -67,9 +67,18 @@ class AppMobile extends Component<Props, State> {
     const { className, classes } = this.props;
     const { isDrawerOpen } = this.state;
 
+    let heightAppBar = 56;
+    if (
+      this.refAppBar &&
+      this.refAppBar.current &&
+      this.refAppBar.current.getBoundingClientRect
+    ) {
+      heightAppBar = this.refAppBar.current.getBoundingClientRect().height;
+    }
+
     return (
       <div id="appRoot" className={classNames(className, classes.root)}>
-        <AppBar className={classes.appBar}>
+        <AppBar ref={this.refAppBar} className={classes.appBar}>
           <Toolbar>
             <Hidden mdUp>
               <IconButton
@@ -79,7 +88,11 @@ class AppMobile extends Component<Props, State> {
                 aria-label="open menu"
                 edge="start"
               >
-                {isDrawerOpen ? <CloseIcon /> : <MenuIcon />}
+                {isDrawerOpen ? (
+                  <CloseIcon className={classes.menuButton} />
+                ) : (
+                  <MenuIcon className={classes.menuButton} />
+                )}
               </IconButton>
             </Hidden>
             <Typography variant="h6" noWrap>
@@ -89,7 +102,7 @@ class AppMobile extends Component<Props, State> {
         </AppBar>
         <Toolbar />
 
-        <div ref={this.contentRef} className={classes.content}>
+        <div className={classes.content}>
           <Switch>
             <Route
               path="/doacts238"
@@ -118,12 +131,14 @@ class AppMobile extends Component<Props, State> {
         </div>
 
         <SwipeableDrawer
+          style={{ top: `${heightAppBar}px` }}
           classes={{ paper: classes.navDrawer }}
           open={isDrawerOpen}
           onClose={() => this.setDrawerOpen(false)}
           onOpen={() => this.setDrawerOpen(true)}
           disableBackdropTransition={!iOS}
           disableDiscovery={iOS}
+          BackdropProps={{ classes: { root: classes.backdrop } }}
         >
           <NavList
             classes={{ navListItem: classes.navListItem }}
@@ -145,7 +160,9 @@ const styles = theme => ({
     width: '100%',
     flexGrow: 1
   },
-  appBar: {},
+  appBar: {
+    height: theme.spacing(theme.app.page.appBarHeight)
+  },
   content: {
     height: '100%',
     width: '100%'
@@ -154,7 +171,11 @@ const styles = theme => ({
     margin: theme.spacing(1)
   },
   navDrawer: {
-    background: theme.app.palette.background.default
+    background: theme.app.palette.background.default,
+    marginTop: theme.spacing(theme.app.page.appBarHeight)
+  },
+  backdrop: {
+    top: theme.spacing(theme.app.page.appBarHeight)
   },
   navListItem: {
     padding: 0,

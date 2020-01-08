@@ -119,7 +119,7 @@ class App extends Component<Props, State> {
     return (
       <div id="appRoot" className={classNames(className, classes.root)}>
         {/**/}
-        <AppBar id="appBar" position="static">
+        <AppBar className={classes.appBar} position="static">
           <Toolbar>
             <Hidden mdUp>
               <IconButton
@@ -206,6 +206,9 @@ const styles = theme => ({
     width: '100%',
     flexGrow: 1,
     zIndex: 1
+  },
+  appBar: {
+    height: theme.spacing(theme.app.page.appBarHeight)
   },
   button: {
     margin: theme.spacing(1)
