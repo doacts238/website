@@ -1,6 +1,7 @@
 import httpService from './HttpService';
 
-const PREFIX = 'http://new.doacts238.org';
+const PREFIX = 'https://testing.doacts238.org';
+//const PREFIX = '';
 //const PREFIX = './backend/';
 // const DOWNLOAD_URI = 'downloadSignedFile.php';
 // const UPLOAD_URI = 'uploadFile.php';
