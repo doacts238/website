@@ -4,6 +4,7 @@ import { Typography, makeStyles, Link } from '@material-ui/core';
 import MapMarkerIcon from 'mdi-react/MapMarkerIcon';
 
 import classNames from 'classnames';
+import GridNoPadding from './GridNoPadding';
 
 type Props = {
   className?: string
@@ -23,72 +24,6 @@ const PageContact = ({ className }: Props) => {
           We would love to hear from you. Here are several ways to contact us.
         </p>
 
-        <h2>Email Addresses:</h2>
-        <div>
-          <table style={{ border: '0px solid black', marginLeft: '25px' }}>
-            <tbody>
-              <tr>
-                <th style={{ textAlign: 'right', verticalAlign: 'top' }}>
-                  Pastor David Brown:
-                </th>
-                <td>
-                  <a href="mailto:pastor@DoActs238.org">pastor@DoActs238.org</a>
-                </td>
-              </tr>
-              <tr>
-                <th style={{ textAlign: 'right', verticalAlign: 'top' }}>
-                  Web Master:
-                </th>
-                <td>
-                  <a href="mailto:webmaster@DoActs238.org">
-                    webmaster@DoActs238.org
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h2>Phone Numbers:</h2>
-        <div>
-          <table style={{ border: '0px solid black', marginLeft: '25px' }}>
-            <tbody>
-              {/** /}
-              <tr>
-                <th style={{ textAlign: 'right', verticalAlign: 'top' }}>
-                  Church:
-                </th>
-                <td>256-851-2466 (answering machine checked weekly)</td>
-              </tr>
-              {/**/}
-              <tr>
-                <th style={{ textAlign: 'right', verticalAlign: 'top' }}>
-                  Pastor David Brown:
-                </th>
-                <td>
-                  {/** /}
-                  Home: 256-885-3784
-                  <br />
-                  {/**/}
-                  Cell: 256-603-7901
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        {/** /}
-        <h2>Postal Address:</h2>
-        <div style={{ marginLeft: '25px' }}>
-          New Life Worship Center
-          <br />
-          P. O. Box 7231
-          <br />
-          Huntsville, AL 35807
-          <br />
-        </div>
-        {/**/}
-
         <h2>Street Address:</h2>
         <div style={{ marginLeft: '25px' }}>
           New Life Worship Center
@@ -107,6 +42,42 @@ const PageContact = ({ className }: Props) => {
               underline="hover"
             >
               Show on Google Maps
+            </Link>
+          </div>
+        </div>
+
+        <h2>Phone Numbers:</h2>
+        <div style={{ marginLeft: '25px' }}>
+          <div style={{ fontWeight: 'bold' }}>Pastor David Brown:</div>
+          <div style={{ marginLeft: '25px' }}>
+            Cell: 256-603-7901
+            <br />
+            Home: 256-713-9620
+          </div>
+        </div>
+
+        {/** /}
+        <h2>Postal Address:</h2>
+        <div style={{ marginLeft: '25px' }}>
+          New Life Worship Center
+          <br />
+          P. O. Box 7231
+          <br />
+          Huntsville, AL 35807
+          <br />
+        </div>
+        {/**/}
+
+        <h2>Email Addresses:</h2>
+        <div style={{ marginLeft: '25px' }}>
+          <div style={{ fontWeight: 'bold' }}>Pastor David Brown:</div>
+          <div style={{ marginLeft: '25px' }}>
+            <Link href="mailto:pastor@DoActs238.org">pastor@DoActs238.org</Link>
+          </div>
+          <div style={{ fontWeight: 'bold' }}>Webmaster:</div>
+          <div style={{ marginLeft: '25px' }}>
+            <Link href="mailto:webmaster@DoActs238.org">
+              webmaster@DoActs238.org
             </Link>
           </div>
         </div>
