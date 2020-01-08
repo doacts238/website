@@ -4,7 +4,6 @@ import { Typography, makeStyles, Link } from '@material-ui/core';
 import MapMarkerIcon from 'mdi-react/MapMarkerIcon';
 
 import classNames from 'classnames';
-import GridNoPadding from './GridNoPadding';
 
 type Props = {
   className?: string
@@ -74,7 +73,9 @@ const PageContact = ({ className }: Props) => {
           <div style={{ marginLeft: '25px' }}>
             <Link href="mailto:pastor@DoActs238.org">pastor@DoActs238.org</Link>
           </div>
-          <div style={{ fontWeight: 'bold' }}>Webmaster:</div>
+          <div style={{ fontWeight: 'bold', marginTop: '10px' }}>
+            Webmaster:
+          </div>
           <div style={{ marginLeft: '25px' }}>
             <Link href="mailto:webmaster@DoActs238.org">
               webmaster@DoActs238.org
