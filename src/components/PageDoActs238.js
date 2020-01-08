@@ -18,7 +18,7 @@ const PageDoActs238 = ({ className }: Props) => {
         <h1 style={{ marginTop: 0 }}>Do Acts 2:38?</h1>
 
         <p>
-          On our Church van, business cards, letterhead and even in the URL of
+          On our Church sign, business cards, letterhead and even in the URL of
           our website we proudly tout the slogan, "Do Acts 2:38". You might ask,
           "Why?" There are several reasons that this ministry has chosen to
           align itself squarely under the banner of this important passage of
