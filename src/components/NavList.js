@@ -30,11 +30,7 @@ const NavList = (props: Props) => {
     handleListItemClick
   } = props;
 
-  console.log('location', location);
-
   const urlMatch = location && location.pathname ? location.pathname : '';
-
-  console.log('urlMatch', urlMatch);
 
   return (
     <List className={classNames(className, classes.root)}>
