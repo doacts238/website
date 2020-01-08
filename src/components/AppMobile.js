@@ -169,7 +169,7 @@ const styles = theme => ({
   },
   navDrawerPaper: {
     background: theme.app.palette.background.default,
-    marginTop: theme.spacing(theme.app.page.appBarHeight)
+    top: theme.spacing(theme.app.page.appBarHeight)
   },
   navDrawerBackdropRoot: {
     top: theme.spacing(theme.app.page.appBarHeight)
