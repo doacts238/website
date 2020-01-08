@@ -17,7 +17,7 @@ const PageServices = ({ className }: Props) => {
     <div className={classNames(className, classes.root)}>
       <Typography component="div" variant="body2">
         <h1 style={{ marginTop: 0 }}>Service Times</h1>
-        <div style={{ marginLeft: '25px' }}>
+        <div>
           <div style={{ fontWeight: 'bold' }}>Sunday Morning:</div>
           <div style={{ marginLeft: '25px' }}>10:30 - 12:00</div>
           <div style={{ fontWeight: 'bold', marginTop: '10px' }}>
