@@ -132,13 +132,13 @@ class AppMobile extends Component<Props, State> {
 
         <SwipeableDrawer
           style={{ top: `${heightAppBar}px` }}
-          classes={{ paper: classes.navDrawer }}
+          classes={{ paper: classes.navDrawerPaper }}
           open={isDrawerOpen}
           onClose={() => this.setDrawerOpen(false)}
           onOpen={() => this.setDrawerOpen(true)}
           disableBackdropTransition={!iOS}
           disableDiscovery={iOS}
-          BackdropProps={{ classes: { root: classes.backdrop } }}
+          BackdropProps={{ classes: { root: classes.drawerBackdropRoot } }}
         >
           <NavList
             classes={{ navListItem: classes.navListItem }}
@@ -167,14 +167,11 @@ const styles = theme => ({
     height: '100%',
     width: '100%'
   },
-  button: {
-    margin: theme.spacing(1)
-  },
-  navDrawer: {
+  navDrawerPaper: {
     background: theme.app.palette.background.default,
     marginTop: theme.spacing(theme.app.page.appBarHeight)
   },
-  backdrop: {
+  drawerBackdropRoot: {
     top: theme.spacing(theme.app.page.appBarHeight)
   },
   navListItem: {
