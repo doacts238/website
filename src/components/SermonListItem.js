@@ -19,15 +19,20 @@ import GridNoPadding from './GridNoPadding';
 type Props = {
   className?: string,
   sermon: Object,
-  onListenClick: Function,
+  onClick: Function,
   key: Number
 };
 
-const SermonListItem = ({ className, sermon, onListenClick }: Props) => {
+const SermonListItem = (props: Props) => {
+  const { className, sermon, onClick } = props;
   const classes = useStyles();
 
   if (!sermon.AUDIO_DESC) {
     sermon.AUDIO_DESC = sermon.AUDIO_TITLE;
+  }
+
+  function doClick() {
+    onClick(sermon);
   }
 
   return (
@@ -60,7 +65,7 @@ const SermonListItem = ({ className, sermon, onListenClick }: Props) => {
           variant="h6"
           underline="hover"
           className={classNames(classes.title, classes.hoverPointer)}
-          onClick={() => onListenClick(sermon)}
+          onClick={() => doClick()}
         >
           {sermon.AUDIO_TITLE}
         </Link>
@@ -84,7 +89,7 @@ const SermonListItem = ({ className, sermon, onListenClick }: Props) => {
       </CardContent>
       <CardActions>
         <Box marginLeft="auto">
-          <Button color="primary" onClick={() => onListenClick(sermon)}>
+          <Button color="primary" onClick={() => doClick()}>
             Listen or Download
           </Button>
         </Box>

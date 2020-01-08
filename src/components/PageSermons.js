@@ -39,8 +39,14 @@ class PageSermons extends Component<Props, State> {
   };
 
   async componentDidMount() {
+    const { location } = this.props;
     const { howMany, showAll } = this.state;
-    await this.populateSermons(howMany, showAll);
+
+    if (location && location.state && location.state.state) {
+      this.setState(location.state.state);
+    } else {
+      await this.populateSermons(howMany, showAll);
+    }
   }
 
   async populateSermons(howMany: Number, showAll: Boolean) {
@@ -70,6 +76,7 @@ class PageSermons extends Component<Props, State> {
   };
 
   async handleHowManyChange(newVal: any): void {
+    const { history, location } = this.props;
     const { howMany, showAll } = this.state;
     if (newVal === 'ALL') {
       if (!showAll) {
@@ -82,6 +89,12 @@ class PageSermons extends Component<Props, State> {
         this.setState({ howMany: newValInt, showAll: false });
         await this.populateSermons(newValInt, false);
       }
+    }
+    if (history && location) {
+      history.push({
+        pathname: location.pathname,
+        state: { state: this.state }
+      });
     }
   }
 
@@ -171,7 +184,7 @@ class PageSermons extends Component<Props, State> {
                 <SermonListItem
                   className={classes.sermon}
                   sermon={sermon}
-                  onListenClick={this.handleSermonClick}
+                  onClick={this.handleSermonClick}
                 />
               </Fragment>
             ))
