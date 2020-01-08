@@ -47,7 +47,13 @@ const PageHome = ({ className }: Props) => {
               alt="Pastor David A. Brown"
               onClick={handleClick}
             />
-            <div className={classes.calloutCaption}>Pastor David A. Brown</div>
+            <div className={classes.calloutCaption}>
+              Pastor David A. Brown
+              <br />
+              <Typography variant="caption" style={{ fontStyle: 'italic' }}>
+                New Life Worship Center
+              </Typography>
+            </div>
           </div>
         </div>
         <Popper id={id} open={open} anchorEl={anchorEl}>
