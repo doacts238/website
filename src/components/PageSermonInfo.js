@@ -65,8 +65,9 @@ const PageSermonInfo = ({ className, match, location, history }: Props) => {
 
   document.title = `Do Acts 2:38 - ${sermon.AUDIO_TITLE}`;
 
-  const sermonUrl = `http://doacts238.org/sermons/${sermon.AUDIO_FILE_HIGH}`;
-  const thisPageUrl = `http://new.doacts238.org/sermon/${sermon.AUDIO_ID}`;
+  //const sermonUrl = `https://doacts238.org/sermons/${sermon.AUDIO_FILE_HIGH}`;
+  const sermonUrl = `https://audio.doacts238.org/files/${sermon.AUDIO_FILE_HIGH}`;
+  const thisPageUrl = `https://testing.doacts238.org/sermon/${sermon.AUDIO_ID}`;
   const shareIconSize = 24;
 
   return (
