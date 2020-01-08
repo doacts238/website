@@ -1,5 +1,7 @@
 import React from 'react';
-import { Typography, makeStyles } from '@material-ui/core';
+import { Typography, makeStyles, Link } from '@material-ui/core';
+
+import MapMarkerIcon from 'mdi-react/MapMarkerIcon';
 
 import classNames from 'classnames';
 
@@ -51,19 +53,23 @@ const PageContact = ({ className }: Props) => {
         <div>
           <table style={{ border: '0px solid black', marginLeft: '25px' }}>
             <tbody>
+              {/** /}
               <tr>
                 <th style={{ textAlign: 'right', verticalAlign: 'top' }}>
                   Church:
                 </th>
                 <td>256-851-2466 (answering machine checked weekly)</td>
               </tr>
+              {/**/}
               <tr>
                 <th style={{ textAlign: 'right', verticalAlign: 'top' }}>
                   Pastor David Brown:
                 </th>
                 <td>
+                  {/** /}
                   Home: 256-885-3784
                   <br />
+                  {/**/}
                   Cell: 256-603-7901
                 </td>
               </tr>
@@ -71,6 +77,7 @@ const PageContact = ({ className }: Props) => {
           </table>
         </div>
 
+        {/** /}
         <h2>Postal Address:</h2>
         <div style={{ marginLeft: '25px' }}>
           New Life Worship Center
@@ -80,15 +87,28 @@ const PageContact = ({ className }: Props) => {
           Huntsville, AL 35807
           <br />
         </div>
+        {/**/}
 
         <h2>Street Address:</h2>
         <div style={{ marginLeft: '25px' }}>
           New Life Worship Center
           <br />
-          403 Treymore Avenue
+          27390 Thach Rd
           <br />
-          Huntsville, AL 35811
+          Elkmont, AL 35620
           <br />
+          <div className={classes.markerLink}>
+            <MapMarkerIcon style={{ color: 'darkred', marginRight: '5px' }} />
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://goo.gl/maps/pSgrYs2SEyRocjiF8"
+              variant="button"
+              underline="hover"
+            >
+              Show on Google Maps
+            </Link>
+          </div>
         </div>
       </Typography>
     </div>
@@ -103,6 +123,13 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3),
     width: '100%',
     minHeight: '100%'
+  },
+  markerLink: {
+    margin: 0,
+    padding: 0,
+    marginTop: theme.spacing(3),
+    display: 'flex',
+    alignItems: 'center'
   }
 }));
 
