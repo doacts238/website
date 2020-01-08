@@ -27,7 +27,7 @@ type Props = {
 };
 type State = {};
 
-class App extends Component<Props, State> {
+class AppDesktop extends Component<Props, State> {
   state: State = {};
 
   constructor(props) {
@@ -150,4 +150,4 @@ const styles = theme => ({
   //offset: theme.mixins.toolbar
 });
 
-export default withStyles(styles)(withRouter(App));
+export default withStyles(styles)(withRouter(AppDesktop));
