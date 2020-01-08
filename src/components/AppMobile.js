@@ -138,7 +138,7 @@ class AppMobile extends Component<Props, State> {
           onOpen={() => this.setDrawerOpen(true)}
           disableBackdropTransition={!iOS}
           disableDiscovery={iOS}
-          BackdropProps={{ classes: { root: classes.drawerBackdropRoot } }}
+          BackdropProps={{ classes: { root: classes.navDrawerBackdropRoot } }}
         >
           <NavList
             classes={{ navListItem: classes.navListItem }}
@@ -171,7 +171,7 @@ const styles = theme => ({
     background: theme.app.palette.background.default,
     marginTop: theme.spacing(theme.app.page.appBarHeight)
   },
-  drawerBackdropRoot: {
+  navDrawerBackdropRoot: {
     top: theme.spacing(theme.app.page.appBarHeight)
   },
   navListItem: {
