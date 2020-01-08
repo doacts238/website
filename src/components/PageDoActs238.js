@@ -29,10 +29,13 @@ const PageDoActs238 = ({ className }: Props) => {
           <div className={classes.textBox}>
             <div style={{ fontWeight: 'bold', fontStyle: 'italic' }}>
               " ... they were pricked in their heart, and said unto Peter and to
-              the rest of the apostles, Men and brethren, what shall we do? Then
-              Peter said unto them, 'Repent, and be baptized every one of you in
-              the name of Jesus Christ for the remission of sins, and ye shall
-              receive the gift of the Holy Ghost.'"
+              the rest of the apostles, Men and brethren,{' '}
+              <span style={{ textDecoration: 'underline' }}>
+                what shall we do?
+              </span>{' '}
+              Then Peter said unto them, 'Repent, and be baptized every one of
+              you in the name of Jesus Christ for the remission of sins, and ye
+              shall receive the gift of the Holy Ghost.'"
             </div>
             <div className={classes.calloutCaption}>Acts 2:37-38</div>
           </div>
@@ -43,7 +46,7 @@ const PageDoActs238 = ({ className }: Props) => {
           2:37 we see the audience under heavy conviction as Peter is concluding
           the first sermon of the early Church. The crowd, seeking remedy from
           the burden of sin, replies to Peter and to the rest of the apostles,
-          "... what must we do?" In effect, they were asking what they must do
+          "... what shall we do?" In effect, they were asking what they must do
           to obtain salvation. Note that the focus here is not on empty faith
           without action. In our obedient doing of the word, we find salvation,
           not in "believing" only. Saving faith is faith that acts; without
