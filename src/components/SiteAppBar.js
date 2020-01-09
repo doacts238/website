@@ -68,7 +68,7 @@ class SiteAppBar extends Component<Props, State> {
     if (!title) {
       title = (
         <Typography variant="h6" noWrap>
-          Do Acts 2:38! Site
+          Do Acts 2:38!
         </Typography>
       );
     }
