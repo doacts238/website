@@ -49,8 +49,13 @@ class AppMobile extends Component<Props, State> {
   }
 
   handleNavMenuButtonClick = () => {
-    const { isLeftDrawerOpen } = this.state;
-    this.setLeftDrawerOpen(!isLeftDrawerOpen);
+    const { isLeftDrawerOpen, isRightDrawerOpen } = this.state;
+    if (isLeftDrawerOpen || isRightDrawerOpen) {
+      this.setState({ isLeftDrawerOpen: false });
+      this.setState({ isRightDrawerOpen: false });
+    } else {
+      this.setState({ isLeftDrawerOpen: !isLeftDrawerOpen });
+    }
   };
 
   handleListItemClick = strUrl => {
@@ -61,17 +66,8 @@ class AppMobile extends Component<Props, State> {
         pathname: strUrl
       });
     }
-
-    this.setLeftDrawerOpen(false);
-    this.setRightDrawerOpen(false);
-  };
-
-  setLeftDrawerOpen = (isOpen: Boolean) => {
-    this.setState({ isLeftDrawerOpen: isOpen });
-  };
-
-  setRightDrawerOpen = (isOpen: Boolean) => {
-    this.setState({ isRightDrawerOpen: isOpen });
+    this.setState({ isLeftDrawerOpen: false });
+    this.setState({ isRightDrawerOpen: false });
   };
 
   render() {
@@ -115,7 +111,7 @@ class AppMobile extends Component<Props, State> {
                 aria-label="open menu"
                 edge="start"
               >
-                {isLeftDrawerOpen ? (
+                {isLeftDrawerOpen || isRightDrawerOpen ? (
                   <CloseIcon className={classes.menuButton} />
                 ) : (
                   <MenuIcon className={classes.menuButton} />
@@ -158,35 +154,17 @@ class AppMobile extends Component<Props, State> {
         <MySwipeableDraw
           anchor="left"
           open={isLeftDrawerOpen}
-          onClose={() => this.setLeftDrawerOpen(false)}
-          onOpen={() => this.setLeftDrawerOpen(true)}
+          onClose={() => this.setState({ isLeftDrawerOpen: false })}
+          onOpen={() => this.setState({ isLeftDrawerOpen: true })}
         />
         >
         <MySwipeableDraw
           anchor="right"
           open={isRightDrawerOpen}
-          onClose={() => this.setRightDrawerOpen(false)}
-          onOpen={() => this.setRightDrawerOpen(true)}
+          onClose={() => this.setState({ isRightDrawerOpen: false })}
+          onOpen={() => this.setState({ isRightDrawerOpen: true })}
         />
         >
-        {/** /}
-        <SwipeableDrawer
-          anchor="right"
-          style={{ top: `${heightAppBar}px` }}
-          classes={{ paper: classes.navDrawerPaper }}
-          open={isLeftDrawerOpen}
-          onClose={() => this.setDrawerOpen(false)}
-          onOpen={() => this.setDrawerOpen(true)}
-          disableBackdropTransition={!iOS}
-          disableDiscovery={iOS}
-          BackdropProps={{ classes: { root: classes.navDrawerBackdropRoot } }}
-        >
-          <NavList
-            classes={{ navListItem: classes.navListItem }}
-            handleListItemClick={this.handleListItemClick}
-          />
-        </SwipeableDrawer>
-        {/**/}
       </div>
     );
   }
