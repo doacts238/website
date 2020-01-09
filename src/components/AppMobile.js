@@ -1,13 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Typography,
-  AppBar,
-  Toolbar,
-  IconButton,
-  Hidden,
-  withStyles,
-  SwipeableDrawer
-} from '@material-ui/core';
+import { Toolbar, withStyles, SwipeableDrawer } from '@material-ui/core';
 
 import MenuIcon from 'mdi-react/MenuIcon';
 import CloseIcon from 'mdi-react/CloseIcon';
@@ -21,6 +13,7 @@ import PageSermons from './PageSermons';
 import PageContact from './PageContact';
 import PageSermonInfo from './PageSermonInfo';
 import NavList from './NavList';
+import SiteAppBar from './SiteAppBar';
 
 type Props = {
   classes: Object,
@@ -101,28 +94,13 @@ class AppMobile extends Component<Props, State> {
 
     return (
       <div id="appRoot" className={classNames(className, classes.root)}>
-        <AppBar ref={this.refAppBar} className={classes.appBar}>
-          <Toolbar>
-            <Hidden mdUp>
-              <IconButton
-                className={classes.menuButton}
-                onClick={this.handleNavMenuButtonClick}
-                color="inherit"
-                aria-label="open menu"
-                edge="start"
-              >
-                {isLeftDrawerOpen || isRightDrawerOpen ? (
-                  <CloseIcon className={classes.menuButton} />
-                ) : (
-                  <MenuIcon className={classes.menuButton} />
-                )}
-              </IconButton>
-            </Hidden>
-            <Typography variant="h6" noWrap>
-              Do Acts 2:38!
-            </Typography>
-          </Toolbar>
-        </AppBar>
+        <SiteAppBar
+          refAppBar={this.refAppBar}
+          NavMenuIcon={
+            isLeftDrawerOpen || isRightDrawerOpen ? <CloseIcon /> : <MenuIcon />
+          }
+          onNavMenuButtonClick={this.handleNavMenuButtonClick}
+        />
         <Toolbar />
         <div className={classes.content}>
           <Switch>

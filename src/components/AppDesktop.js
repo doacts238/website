@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Typography,
-  AppBar,
-  Toolbar,
-  Container,
-  withStyles
-} from '@material-ui/core';
+import { Container, withStyles } from '@material-ui/core';
 
 import classNames from 'classnames';
 import GridNoPadding from './GridNoPadding';
@@ -17,6 +11,7 @@ import PageSermons from './PageSermons';
 import PageContact from './PageContact';
 import PageSermonInfo from './PageSermonInfo';
 import NavList from './NavList';
+import SiteAppBar from './SiteAppBar';
 
 type Props = {
   classes: Object,
@@ -58,13 +53,8 @@ class AppDesktop extends Component<Props, State> {
 
     return (
       <div id="appRoot" className={classNames(className, classes.root)}>
-        <AppBar className={classes.appBar} position="static">
-          <Toolbar>
-            <Typography variant="h6" noWrap>
-              Do Acts 2:38!
-            </Typography>
-          </Toolbar>
-        </AppBar>
+        <SiteAppBar position="static" />
+
         <GridNoPadding id="app_grid_container" container spacing={0}>
           <GridNoPadding item>
             <NavList
