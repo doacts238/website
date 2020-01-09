@@ -30,12 +30,18 @@ type Props = {
   history: Object
 };
 
-type State = { isDrawerOpen: Boolean };
+type State = {
+  isLeftDrawerOpen: Boolean,
+  isRightDrawerOpen: Boolean
+};
 
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 class AppMobile extends Component<Props, State> {
-  state: State = { isDrawerOpen: false };
+  state: State = {
+    isLeftDrawerOpen: false,
+    isRightDrawerOpen: false
+  };
 
   constructor(props) {
     super(props);
@@ -43,8 +49,8 @@ class AppMobile extends Component<Props, State> {
   }
 
   handleNavMenuButtonClick = () => {
-    const { isDrawerOpen } = this.state;
-    this.setDrawerOpen(!isDrawerOpen);
+    const { isLeftDrawerOpen } = this.state;
+    this.setLeftDrawerOpen(!isLeftDrawerOpen);
   };
 
   handleListItemClick = strUrl => {
@@ -56,16 +62,21 @@ class AppMobile extends Component<Props, State> {
       });
     }
 
-    this.setDrawerOpen(false);
+    this.setLeftDrawerOpen(false);
+    this.setRightDrawerOpen(false);
   };
 
-  setDrawerOpen = (isOpen: Boolean) => {
-    this.setState({ isDrawerOpen: isOpen });
+  setLeftDrawerOpen = (isOpen: Boolean) => {
+    this.setState({ isLeftDrawerOpen: isOpen });
+  };
+
+  setRightDrawerOpen = (isOpen: Boolean) => {
+    this.setState({ isRightDrawerOpen: isOpen });
   };
 
   render() {
     const { className, classes } = this.props;
-    const { isDrawerOpen } = this.state;
+    const { isLeftDrawerOpen, isRightDrawerOpen } = this.state;
 
     let heightAppBar = 56;
     if (
@@ -75,6 +86,22 @@ class AppMobile extends Component<Props, State> {
     ) {
       heightAppBar = this.refAppBar.current.getBoundingClientRect().height;
     }
+
+    const MySwipeableDraw = (props: Object = {}) => (
+      <SwipeableDrawer
+        {...props}
+        style={{ top: `${heightAppBar}px` }}
+        classes={{ paper: classes.navDrawerPaper }}
+        disableBackdropTransition={!iOS}
+        disableDiscovery={iOS}
+        BackdropProps={{ classes: { root: classes.navDrawerBackdropRoot } }}
+      >
+        <NavList
+          classes={{ navListItem: classes.navListItem }}
+          handleListItemClick={this.handleListItemClick}
+        />
+      </SwipeableDrawer>
+    );
 
     return (
       <div id="appRoot" className={classNames(className, classes.root)}>
@@ -88,7 +115,7 @@ class AppMobile extends Component<Props, State> {
                 aria-label="open menu"
                 edge="start"
               >
-                {isDrawerOpen ? (
+                {isLeftDrawerOpen ? (
                   <CloseIcon className={classes.menuButton} />
                 ) : (
                   <MenuIcon className={classes.menuButton} />
@@ -101,7 +128,6 @@ class AppMobile extends Component<Props, State> {
           </Toolbar>
         </AppBar>
         <Toolbar />
-
         <div className={classes.content}>
           <Switch>
             <Route
@@ -129,11 +155,26 @@ class AppMobile extends Component<Props, State> {
             <Route path="/" exact render={props => <PageHome {...props} />} />
           </Switch>
         </div>
-
+        <MySwipeableDraw
+          anchor="left"
+          open={isLeftDrawerOpen}
+          onClose={() => this.setLeftDrawerOpen(false)}
+          onOpen={() => this.setLeftDrawerOpen(true)}
+        />
+        >
+        <MySwipeableDraw
+          anchor="right"
+          open={isRightDrawerOpen}
+          onClose={() => this.setRightDrawerOpen(false)}
+          onOpen={() => this.setRightDrawerOpen(true)}
+        />
+        >
+        {/** /}
         <SwipeableDrawer
+          anchor="right"
           style={{ top: `${heightAppBar}px` }}
           classes={{ paper: classes.navDrawerPaper }}
-          open={isDrawerOpen}
+          open={isLeftDrawerOpen}
           onClose={() => this.setDrawerOpen(false)}
           onOpen={() => this.setDrawerOpen(true)}
           disableBackdropTransition={!iOS}
@@ -145,6 +186,7 @@ class AppMobile extends Component<Props, State> {
             handleListItemClick={this.handleListItemClick}
           />
         </SwipeableDrawer>
+        {/**/}
       </div>
     );
   }
