@@ -59,7 +59,7 @@ class AppDesktop extends Component<Props, State> {
           <GridNoPadding item>
             <NavList
               classes={{ navListItem: classes.navListItem }}
-              handleListItemClick={this.handleListItemClick}
+              onListItemClick={this.handleListItemClick}
             />
           </GridNoPadding>
           <GridNoPadding item xs>

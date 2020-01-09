@@ -14,7 +14,7 @@ import { withRouter } from 'react-router-dom';
 type Props = {
   classes: Object,
   className?: string,
-  handleListItemClick: Function,
+  onListItemClick: Function,
   itemVariant: String,
   match: Object,
   location: Object,
@@ -27,7 +27,7 @@ const NavList = (props: Props) => {
     className,
     location,
     itemVariant = 'body2',
-    handleListItemClick
+    onListItemClick
   } = props;
 
   const urlMatch = location && location.pathname ? location.pathname : '';
@@ -35,7 +35,7 @@ const NavList = (props: Props) => {
   return (
     <List className={classNames(className, classes.root)}>
       <ListItem
-        onClick={() => handleListItemClick('/')}
+        onClick={() => onListItemClick('/')}
         className={classes.navListItem}
       >
         <HomeIcon className={classes.navIcon} />
@@ -49,7 +49,7 @@ const NavList = (props: Props) => {
         </Typography>
       </ListItem>
       <ListItem
-        onClick={() => handleListItemClick('/doacts238')}
+        onClick={() => onListItemClick('/doacts238')}
         className={classes.navListItem}
       >
         <QuestionIcon className={classes.navIcon} />
@@ -63,7 +63,7 @@ const NavList = (props: Props) => {
         </Typography>
       </ListItem>
       <ListItem
-        onClick={() => handleListItemClick('/sermons')}
+        onClick={() => onListItemClick('/sermons')}
         className={classes.navListItem}
       >
         <SermonsIcon className={classes.navIcon} />
@@ -77,7 +77,7 @@ const NavList = (props: Props) => {
         </Typography>
       </ListItem>
       <ListItem
-        onClick={() => handleListItemClick('/services')}
+        onClick={() => onListItemClick('/services')}
         className={classes.navListItem}
       >
         <ServicesIcon className={classes.navIcon} />
@@ -91,7 +91,7 @@ const NavList = (props: Props) => {
         </Typography>
       </ListItem>
       <ListItem
-        onClick={() => handleListItemClick('/contact')}
+        onClick={() => onListItemClick('/contact')}
         className={classes.navListItem}
       >
         <ContactIcon className={classes.navIcon} />

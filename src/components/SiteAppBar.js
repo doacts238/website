@@ -10,6 +10,8 @@ import {
 import { withRouter } from 'react-router-dom';
 
 import MenuIcon from 'mdi-react/MenuIcon';
+import BackIcon from 'mdi-react/ArrowLeftIcon';
+import SermonsIcon from 'mdi-react/VolumeHighIcon';
 
 import classNames from 'classnames';
 
@@ -22,6 +24,7 @@ type Props = {
   title: React.ReactNode,
   navMenuIcon: React.ReactNode,
   onNavMenuButtonClick: Function,
+  onSermonsButtonClick: Function,
   refAppBar: any
 };
 
@@ -34,14 +37,29 @@ class SiteAppBar extends Component<Props, State> {
   //   super(props);
   // }
 
+  handleListItemClick = strUrl => {
+    const { history, location } = this.props;
+
+    if (history && location) {
+      if (location.pathname.startsWith('/sermon')) {
+        history.goBack();
+      } else
+        history.push({
+          pathname: '/sermons'
+        });
+    }
+  };
+
   render() {
     const {
       className,
       classes,
       navMenuIcon = <MenuIcon />,
       onNavMenuButtonClick,
+      onSermonsButtonClick = this.handleListItemClick,
       title: titleProp = undefined,
       refAppBar = React.createRef(),
+      location,
       ...otherProps
     } = this.props;
     //const {  } = this.state;
@@ -54,6 +72,8 @@ class SiteAppBar extends Component<Props, State> {
         </Typography>
       );
     }
+
+    const urlMatch = location && location.pathname ? location.pathname : '';
 
     return (
       <AppBar
@@ -74,6 +94,16 @@ class SiteAppBar extends Component<Props, State> {
             </IconButton>
           </Hidden>
           {title}
+          <div className={classes.grow} />
+          <IconButton
+            className={classes.menuButton}
+            onClick={onSermonsButtonClick}
+            color="inherit"
+            aria-label="goto sermons page"
+            edge="start"
+          >
+            {urlMatch.startsWith('/sermons') ? <BackIcon /> : <SermonsIcon />}
+          </IconButton>
         </Toolbar>
       </AppBar>
     );
@@ -85,7 +115,10 @@ const styles = theme => ({
     height: theme.spacing(theme.app.page.appBarHeight)
   },
   menuButton: {},
-  menuIcon: {}
+  menuIcon: {},
+  grow: {
+    flexGrow: 1
+  }
 });
 
 export default withStyles(styles)(withRouter(SiteAppBar));

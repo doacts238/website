@@ -87,7 +87,7 @@ class AppMobile extends Component<Props, State> {
       >
         <NavList
           classes={{ navListItem: classes.navListItem }}
-          handleListItemClick={this.handleListItemClick}
+          onListItemClick={this.handleListItemClick}
         />
       </SwipeableDrawer>
     );
@@ -96,7 +96,7 @@ class AppMobile extends Component<Props, State> {
       <div id="appRoot" className={classNames(className, classes.root)}>
         <SiteAppBar
           refAppBar={this.refAppBar}
-          NavMenuIcon={
+          navMenuIcon={
             isLeftDrawerOpen || isRightDrawerOpen ? <CloseIcon /> : <MenuIcon />
           }
           onNavMenuButtonClick={this.handleNavMenuButtonClick}
@@ -135,14 +135,12 @@ class AppMobile extends Component<Props, State> {
           onClose={() => this.setState({ isLeftDrawerOpen: false })}
           onOpen={() => this.setState({ isLeftDrawerOpen: true })}
         />
-        >
         <MySwipeableDraw
           anchor="right"
           open={isRightDrawerOpen}
           onClose={() => this.setState({ isRightDrawerOpen: false })}
           onOpen={() => this.setState({ isRightDrawerOpen: true })}
         />
-        >
       </div>
     );
   }
