@@ -112,9 +112,8 @@ class PageSermons extends Component<Props, State> {
           <h1 style={{ marginTop: 0 }}>Apostolic Pulpit</h1>
           <p>
             This a collection of sermons, Bible teachings, etc., mostly by
-            Pastor David Brown. They are prayerfully shared with hopes that the
-            Lord by His Word will make you perfect, stablish, strengthen, and
-            settle you. We would love to hear your{' '}
+            Pastor David Brown. They are prayerfully shared with hopes that they
+            will edify the Body of Christ. We would love to hear your{' '}
             <Link to="/contact" title="Contact Us">
               feedback
             </Link>{' '}
