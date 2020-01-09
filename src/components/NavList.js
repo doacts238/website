@@ -6,7 +6,7 @@ import HomeIcon from 'mdi-react/HomeIcon';
 import QuestionIcon from 'mdi-react/HelpCircleIcon';
 import SermonsIcon from 'mdi-react/VolumeHighIcon';
 import ServicesIcon from 'mdi-react/CalendarClockIcon';
-import ContactIcon from 'mdi-react/ContactMailIcon';
+import ContactIcon from 'mdi-react/PhoneIcon';
 
 import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
