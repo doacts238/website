@@ -83,7 +83,9 @@ class AppMobile extends Component<Props, State> {
         classes={{ paper: classes.navDrawerPaper }}
         disableBackdropTransition={!iOS}
         disableDiscovery={iOS}
-        BackdropProps={{ classes: { root: classes.navDrawerBackdropRoot } }}
+        BackdropProps={{
+          classes: { root: classes.navDrawerBackdropRoot }
+        }}
       >
         <NavList
           classes={{ navListItem: classes.navListItem }}
@@ -156,19 +158,16 @@ const styles = theme => ({
     width: '100%',
     flexGrow: 1
   },
-  appBar: {
-    height: theme.spacing(theme.app.page.appBarHeight)
-  },
   content: {
     height: '100%',
     width: '100%'
   },
   navDrawerPaper: {
     background: theme.app.palette.background.default,
-    top: theme.spacing(theme.app.page.appBarHeight)
+    top: theme.mixins.toolbar.minHeight
   },
   navDrawerBackdropRoot: {
-    top: theme.spacing(theme.app.page.appBarHeight)
+    top: theme.mixins.toolbar.minHeight
   },
   navListItem: {
     padding: 0,

@@ -78,10 +78,10 @@ class SiteAppBar extends Component<Props, State> {
     return (
       <AppBar
         ref={refAppBar}
-        className={classNames(classes.root, className)}
+        className={classNames(className, classes.root, classes.toolbar)}
         {...otherProps}
       >
-        <Toolbar>
+        <Toolbar className={classes.toolbar}>
           <Hidden mdUp>
             <IconButton
               className={classes.menuButton}
@@ -111,9 +111,8 @@ class SiteAppBar extends Component<Props, State> {
 }
 
 const styles = theme => ({
-  root: {
-    height: theme.spacing(theme.app.page.appBarHeight)
-  },
+  root: {},
+  toolbar: theme.mixins.toolbar,
   menuButton: {},
   menuIcon: {},
   grow: {

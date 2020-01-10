@@ -28,6 +28,7 @@ class AppDesktop extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.contentRef = React.createRef();
+    this.refAppBar = React.createRef();
   }
 
   handleListItemClick = strUrl => {
@@ -51,9 +52,18 @@ class AppDesktop extends Component<Props, State> {
       this.contentRef.current.scrollTop = 0;
     }
 
+    let heightAppBar = 64;
+    if (
+      this.refAppBar &&
+      this.refAppBar.current &&
+      this.refAppBar.current.getBoundingClientRect
+    ) {
+      heightAppBar = this.refAppBar.current.getBoundingClientRect().height;
+    }
+
     return (
       <div id="appRoot" className={classNames(className, classes.root)}>
-        <SiteAppBar position="static" />
+        <SiteAppBar refAppBar={this.refAppBar} position="static" />
 
         <GridNoPadding id="app_grid_container" container spacing={0}>
           <GridNoPadding item>
@@ -66,6 +76,7 @@ class AppDesktop extends Component<Props, State> {
             <Container
               disableGutters
               className={classNames(classes.content)}
+              style={{ height: `calc(100% - ${heightAppBar}px)` }}
               ref={this.contentRef}
             >
               <Switch>
@@ -116,9 +127,6 @@ const styles = theme => ({
     flexGrow: 1,
     zIndex: 1
   },
-  appBar: {
-    height: theme.spacing(theme.app.page.appBarHeight)
-  },
   navListItem: {
     padding: theme.spacing(2),
     paddingRight: theme.spacing(1),
@@ -126,18 +134,14 @@ const styles = theme => ({
     width: theme.spacing(theme.app.page.navListWidth)
   },
   content: {
-    //border: '2px solid blue',
     position: 'fixed',
     maxWidth: theme.spacing(
       theme.app.page.pageMaxWidth - theme.app.page.navListWidth
     ),
-    // The following isn't TOO weird because the MUI examples also use it.
-    height: `calc(100% - ${theme.spacing(theme.app.page.appBarHeight)}px)`,
     overflow: 'auto',
     margin: 0,
     padding: 0
   }
-  //offset: theme.mixins.toolbar
 });
 
 export default withStyles(styles)(withRouter(AppDesktop));

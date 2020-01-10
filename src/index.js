@@ -18,14 +18,12 @@ import {
   responsiveFontSizes,
   createMuiTheme,
   makeStyles,
-  useMediaQuery,
-  useTheme
+  useMediaQuery
 } from '@material-ui/core';
 import { BrowserRouter, withRouter } from 'react-router-dom';
 import AppMobile from './components/AppMobile';
 
 const useStyles = makeStyles(theme => {
-  //console.log('theme: ', theme);
   return {
     themeDiv: {
       width: '100%',
@@ -84,7 +82,7 @@ const AppWrapper = () => {
   let prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   prefersDarkMode = false;
 
-  let isMobile: Boolean = useMediaQuery(useTheme().breakpoints.down('sm'));
+  //let isMobile: Boolean = useMediaQuery(useTheme().breakpoints.down('sm'));
 
   const theme = React.useMemo(
     () =>
@@ -94,13 +92,17 @@ const AppWrapper = () => {
             page: {
               pageMinWidth: 10,
               pageMaxWidth: 120,
-              navListWidth: 22,
-              appBarHeight: isMobile ? 7 : 8
+              navListWidth: 22
             },
             palette: {
               background: {
                 default: prefersDarkMode ? grey[900] : brown[50]
               }
+            }
+          },
+          mixins: {
+            toolbar: {
+              minHeight: '56px'
             }
           },
           typography: {
@@ -129,10 +131,11 @@ const AppWrapper = () => {
           }
         })
       ),
-    [prefersDarkMode, isMobile]
+    [prefersDarkMode /*, isMobile*/]
   );
 
-  isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  //console.log('theme', theme);
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <React.StrictMode>
