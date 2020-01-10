@@ -77,7 +77,7 @@ const PageSermonInfo = ({ className, match, location, history }: Props) => {
         className={classes.presents}
         color="textSecondary"
       >
-        New Life Apostolic Pulpit Presents...
+        Apostolic Pulpit Presents...
       </Typography>
 
       <Typography variant="h3" className={classes.title}>
