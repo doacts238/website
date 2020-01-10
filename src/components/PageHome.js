@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Typography, makeStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 //import pastorImage from '../images/PastorDavidBrown.png';
-import topImage from '../images/topImage.png';
+import topImage from '../images/homeTop.jpg';
 
 import classNames from 'classnames';
 
@@ -183,17 +183,6 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.app.palette.background.default,
     color: 'red',
     fontWeight: 'bold'
-  },
-  topImageBg: {
-    backgroundImage: `url(${topImage})`,
-    backgroundSize: 'contain',
-    width: '100%',
-    [theme.breakpoints.down('sm')]: {
-      height: '75px'
-    },
-    [theme.breakpoints.up('md')]: {
-      height: '200px'
-    }
   },
   topImage: {
     width: '100%',
