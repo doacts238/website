@@ -101,6 +101,7 @@ class AppMobile extends Component<Props, State> {
           navMenuIcon={
             isLeftDrawerOpen || isRightDrawerOpen ? <CloseIcon /> : <MenuIcon />
           }
+          disableControls={isLeftDrawerOpen || isRightDrawerOpen}
           onNavMenuButtonClick={this.handleNavMenuButtonClick}
         />
         <Toolbar />

@@ -10,7 +10,8 @@ import {
 import { withRouter } from 'react-router-dom';
 
 import MenuIcon from 'mdi-react/MenuIcon';
-import BackIcon from 'mdi-react/ArrowLeftIcon';
+//import BackIcon from 'mdi-react/ArrowLeftIcon';
+import HomeIcon from 'mdi-react/HomeIcon';
 import SermonsIcon from 'mdi-react/VolumeHighIcon';
 
 import classNames from 'classnames';
@@ -25,7 +26,8 @@ type Props = {
   navMenuIcon: React.ReactNode,
   onNavMenuButtonClick: Function,
   onSermonsButtonClick: Function,
-  refAppBar: any
+  refAppBar: any,
+  disableControls: Boolean
 };
 
 type State = {};
@@ -37,12 +39,15 @@ class SiteAppBar extends Component<Props, State> {
   //   super(props);
   // }
 
-  handleListItemClick = strUrl => {
+  handleSermonsButtonClick = strUrl => {
     const { history, location } = this.props;
 
     if (history && location) {
       if (location.pathname.startsWith('/sermon')) {
-        history.goBack();
+        //history.goBack();
+        history.push({
+          pathname: '/'
+        });
       } else
         history.push({
           pathname: '/sermons'
@@ -56,9 +61,10 @@ class SiteAppBar extends Component<Props, State> {
       classes,
       navMenuIcon = <MenuIcon />,
       onNavMenuButtonClick,
-      onSermonsButtonClick = this.handleListItemClick,
+      onSermonsButtonClick = this.handleSermonsButtonClick,
       title: titleProp = undefined,
       refAppBar = React.createRef(),
+      disableControls = false,
       location,
       ...otherProps
     } = this.props;
@@ -101,8 +107,9 @@ class SiteAppBar extends Component<Props, State> {
             color="inherit"
             aria-label="goto sermons page"
             edge="start"
+            disabled={disableControls}
           >
-            {urlMatch.startsWith('/sermons') ? <BackIcon /> : <SermonsIcon />}
+            {urlMatch.startsWith('/sermon') ? <HomeIcon /> : <SermonsIcon />}
           </IconButton>
         </Toolbar>
       </AppBar>
