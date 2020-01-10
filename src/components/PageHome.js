@@ -65,7 +65,14 @@ const PageHome = ({ className }: Props) => {
         {/**/}
 
           <h1 style={{ marginTop: 0 }}>Welcome!</h1>
-          <p>Thank you for taking the time to visit our website.</p>
+          <p>
+            We at{' '}
+            <span style={{ fontWeight: 'bold', fontStyle: 'italic' }}>
+              New Life Worship Center
+            </span>{' '}
+            of Elkmont, Alabama, would like to thank you for taking the time to
+            visit our website.
+          </p>
 
           <p>
             Believing that "a stream is purest at its source", we strive to
