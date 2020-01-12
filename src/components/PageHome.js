@@ -166,7 +166,8 @@ const useStyles = makeStyles(theme => ({
   textBox: {
     border: '1px dotted #55411C',
     margin: '5px',
-    padding: '10px'
+    padding: '10px',
+    borderRadius: theme.spacing(1)
   },
   calloutCaption: {
     borderTop: '1pt dotted #A8946F',
@@ -187,7 +188,10 @@ const useStyles = makeStyles(theme => ({
   topImage: {
     width: '100%',
     height: 'auto',
-    objectFit: 'contain'
+    objectFit: 'contain',
+    [theme.breakpoints.up('md')]: {
+      borderBottomLeftRadius: '10px'
+    }
   }
 }));
 
