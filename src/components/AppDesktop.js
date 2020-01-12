@@ -48,7 +48,7 @@ class AppDesktop extends Component<Props, State> {
     // See https://reacttraining.com/react-router/web/guides/scroll-restoration
     // But I couldn't fix it that way because the main windows isn't scrolling.
     if (this.contentRef && this.contentRef.current) {
-      this.contentRef.current.focus();
+      //this.contentRef.current.focus();
       this.contentRef.current.scrollTop = 0;
     }
 
