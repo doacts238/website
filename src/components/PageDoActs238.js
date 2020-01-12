@@ -123,7 +123,7 @@ const useStyles = makeStyles(theme => ({
     minHeight: '100%'
   },
   calloutRight: {
-    margin: 0,
+    margin: theme.spacing(3),
     padding: 0,
     [theme.breakpoints.down('sm')]: {
       width: '90%',
@@ -132,9 +132,11 @@ const useStyles = makeStyles(theme => ({
       marginBottom: theme.spacing(4)
     },
     [theme.breakpoints.up('md')]: {
-      width: '325px',
+      width: '40%',
       float: 'right',
-      position: 'relative' /* fix IE peekaboo bug */
+      position: 'relative' /* fix IE peekaboo bug */,
+      marginTop: 0,
+      marginRight: 0
     }
   },
   textBox: {
