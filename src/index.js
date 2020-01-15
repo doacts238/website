@@ -11,10 +11,6 @@ import AppDesktop from './components/AppDesktop';
 
 import 'typeface-roboto';
 
-import PreCacheImg from 'react-precache-img';
-import homeTop from './images/homeTop.jpg';
-import actsTop from './images/actsTop.jpg';
-
 import { brown, grey } from '@material-ui/core/colors';
 import {
   CssBaseline,
@@ -143,7 +139,6 @@ const AppWrapper = () => {
 
   return (
     <React.StrictMode>
-      <PreCacheImg images={[homeTop, actsTop]} />
       <CssBaseline />
       <MuiThemeProvider theme={theme}>
         <BrowserRouter basename="/">
@@ -169,5 +164,6 @@ if (root != null) {
   // If you want your app to work offline and load faster, you can change
   // unregister() to register() below. Note this comes with some pitfalls.
   // Learn more about service workers: https://bit.ly/CRA-PWA
-  serviceWorker.unregister();
+  serviceWorker.register();
+  //serviceWorker.unregister();
 }
