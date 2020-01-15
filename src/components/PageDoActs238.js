@@ -17,7 +17,7 @@ const PageDoActs238 = ({ className }: Props) => {
     <Fragment>
       <img src={topImage} alt="Clouds over lake" className={classes.topImage} />
       <div className={classNames(className, classes.root)}>
-        <Typography component="div" variant="body2">
+        <Typography component="div" variant="body2" color="textPrimary">
           <h1 style={{ marginTop: 0 }}>Do Acts 2:38?</h1>
 
           <p>
@@ -120,7 +120,8 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3),
     paddingTop: theme.spacing(1),
     width: '100%',
-    minHeight: '100%'
+    minHeight: '100%',
+    backgroundColor: theme.palette.background.default
   },
   calloutRight: {
     margin: theme.spacing(3),
@@ -158,7 +159,9 @@ const useStyles = makeStyles(theme => ({
     objectFit: 'contain',
     [theme.breakpoints.up('md')]: {
       borderBottomLeftRadius: '10px'
-    }
+    },
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.default
   }
 }));
 

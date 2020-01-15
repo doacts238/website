@@ -108,17 +108,15 @@ class PageSermons extends Component<Props, State> {
 
     return (
       <div className={classNames(className, classes.root)}>
-        <Typography component="div" variant="body2">
+        <Typography component="div" variant="body2" color="textPrimary">
           <h1 style={{ marginTop: 0 }}>Apostolic Pulpit</h1>
-          <p>
-            This a collection of sermons, Bible teachings, etc., mostly by
-            Pastor David Brown. They are prayerfully shared with hopes that they
-            will edify the Body of Christ. We would love to hear your{' '}
-            <Link to="/contact" title="Contact Us">
-              feedback
-            </Link>{' '}
-            about the Online Sermons feature!
-          </p>
+          This a collection of sermons, Bible teachings, etc., mostly by Pastor
+          David Brown. They are prayerfully shared with hopes that they will
+          edify the Body of Christ. We would love to hear your{' '}
+          <Link to="/contact" title="Contact Us">
+            feedback
+          </Link>{' '}
+          about the Online Sermons feature!
           {/*** /}
           <p>
             If you need help listening to the online sermons, please see our
@@ -136,59 +134,59 @@ class PageSermons extends Component<Props, State> {
             page.
           </p>
          {/***/}
-          <h2 style={{ marginBottom: '0px' }}>
-            <a name="SermonList">Sermon List</a>
-          </h2>
-          <GridNoPadding
-            className={classes.howManyContainer}
-            container
-            alignItems="center"
-            justify="flex-start"
-            wrap="nowrap"
-          >
-            <GridNoPadding item xs>
-              <Typography variant="button" style={{ whiteSpace: 'nowrap' }}>
-                How many to show?
-              </Typography>
-            </GridNoPadding>
-            <GridNoPadding item xs>
-              <FormControl className={classes.formControl}>
-                <Select
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
-                  value={howManySelectVal}
-                  onChange={event =>
-                    this.handleHowManyChange(event.target.value)
-                  }
-                >
-                  <MenuItem value={'5'}>5</MenuItem>
-                  <MenuItem value={'15'}>15</MenuItem>
-                  <MenuItem value={'30'}>30</MenuItem>
-                  <MenuItem value={'50'}>50</MenuItem>
-                  <MenuItem value={'ALL'}>ALL</MenuItem>
-                </Select>
-                {/**/}
-                {/**/}
-              </FormControl>
-            </GridNoPadding>
-          </GridNoPadding>
-
-          {sermons.length <= 0 ? (
-            <Backdrop className={classes.backdrop} open={true}>
-              <CircularProgress color="inherit" />
-            </Backdrop>
-          ) : (
-            sermons.map((sermon, index) => (
-              <Fragment key={index}>
-                <SermonListItem
-                  className={classes.sermon}
-                  sermon={sermon}
-                  onClick={this.handleSermonClick}
-                />
-              </Fragment>
-            ))
-          )}
         </Typography>
+        {/** /}
+        <h2 style={{ marginBottom: '0px' }}>
+          <a name="SermonList">Sermon List</a>
+        </h2>
+        {/**/}
+        <GridNoPadding
+          className={classes.howManyContainer}
+          container
+          alignItems="center"
+          justify="flex-start"
+          wrap="nowrap"
+        >
+          <GridNoPadding item xs>
+            <Typography variant="button" style={{ whiteSpace: 'nowrap' }}>
+              How many to show?
+            </Typography>
+          </GridNoPadding>
+          <GridNoPadding item xs>
+            <FormControl className={classes.formControl}>
+              <Select
+                labelId="demo-simple-select-helper-label"
+                id="demo-simple-select-helper"
+                value={howManySelectVal}
+                onChange={event => this.handleHowManyChange(event.target.value)}
+              >
+                <MenuItem value={'5'}>5</MenuItem>
+                <MenuItem value={'15'}>15</MenuItem>
+                <MenuItem value={'30'}>30</MenuItem>
+                <MenuItem value={'50'}>50</MenuItem>
+                <MenuItem value={'ALL'}>ALL</MenuItem>
+              </Select>
+              {/**/}
+              {/**/}
+            </FormControl>
+          </GridNoPadding>
+        </GridNoPadding>
+
+        {sermons.length <= 0 ? (
+          <Backdrop className={classes.backdrop} open={true}>
+            <CircularProgress color="inherit" />
+          </Backdrop>
+        ) : (
+          sermons.map((sermon, index) => (
+            <Fragment key={index}>
+              <SermonListItem
+                className={classes.sermon}
+                sermon={sermon}
+                onClick={this.handleSermonClick}
+              />
+            </Fragment>
+          ))
+        )}
       </div>
     );
   }
@@ -199,9 +197,10 @@ const styles = theme => ({
     margin: 0,
     marginLeft: 'auto',
     marginReft: 'auto',
-    padding: theme.spacing(3),
+    padding: theme.spacing(2),
     width: '100%',
-    minHeight: '100%'
+    minHeight: '100%',
+    backgroundColor: theme.palette.background.default
   },
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
@@ -209,10 +208,12 @@ const styles = theme => ({
   },
   sermon: {
     margin: theme.spacing(3),
-    marginTop: 0
+    marginTop: 0,
+    marginLeft: 'auto',
+    marginRight: 'auto'
   },
   howManyContainer: {
-    marginLeft: theme.spacing(3),
+    marginLeft: theme.spacing(0),
     maxWidth: theme.spacing(45)
   },
   formControl: {

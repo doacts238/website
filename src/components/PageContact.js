@@ -16,7 +16,7 @@ const PageContact = ({ className }: Props) => {
 
   return (
     <div className={classNames(className, classes.root)}>
-      <Typography component="div" variant="body2">
+      <Typography component="div" variant="body2" color="textPrimary">
         <h1 style={{ marginTop: 0 }}>How to Contact Us</h1>
 
         <p>
@@ -39,6 +39,7 @@ const PageContact = ({ className }: Props) => {
               href="https://goo.gl/maps/pSgrYs2SEyRocjiF8"
               variant="button"
               underline="hover"
+              color="textPrimary"
             >
               Show on Google Maps
             </Link>
@@ -94,7 +95,8 @@ const useStyles = makeStyles(theme => ({
     marginReft: 'auto',
     padding: theme.spacing(3),
     width: '100%',
-    minHeight: '100%'
+    minHeight: '100%',
+    backgroundColor: theme.palette.background.default
   },
   markerLink: {
     margin: 0,

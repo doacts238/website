@@ -196,7 +196,8 @@ const useStyles = makeStyles(theme => ({
     marginReft: 'auto',
     padding: theme.spacing(3),
     width: '100%',
-    minHeight: '100%'
+    minHeight: '100%',
+    backgroundColor: theme.palette.background.default
   },
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,

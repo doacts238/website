@@ -97,6 +97,9 @@ const AppWrapper = () => {
             palette: {
               background: {
                 default: prefersDarkMode ? grey[900] : brown[50]
+              },
+              icons: {
+                default: prefersDarkMode ? grey[400] : brown[700]
               }
             }
           },

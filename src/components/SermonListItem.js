@@ -63,12 +63,21 @@ const SermonListItem = (props: Props) => {
         </GridNoPadding>
         <Link
           variant="h6"
+          component="div"
           underline="hover"
+          color="textPrimary"
           className={classNames(classes.title, classes.hoverPointer)}
           onClick={() => doClick()}
         >
           {sermon.AUDIO_TITLE}
         </Link>
+        <Typography
+          variant="caption"
+          color="textSecondary"
+          className={classes.type}
+        >
+          {sermon.AUDIO_TYPE.AUDIO_TYPE}
+        </Typography>
         <Typography
           variant="subtitle1"
           color="textSecondary"
@@ -76,6 +85,7 @@ const SermonListItem = (props: Props) => {
         >
           {sermon.AUDIO_AUTHOR}
         </Typography>
+
         <TruncateMarkupToggle lines={4} truncated={true}>
           <Typography
             variant="body2"
@@ -89,9 +99,7 @@ const SermonListItem = (props: Props) => {
       </CardContent>
       <CardActions>
         <Box marginLeft="auto">
-          <Button color="primary" onClick={() => doClick()}>
-            Listen or Download
-          </Button>
+          <Button onClick={() => doClick()}>Listen or Download</Button>
         </Box>
       </CardActions>
     </Card>
@@ -111,9 +119,15 @@ const useStyles = makeStyles(theme => ({
     borderBottom: `1px dotted ${theme.palette.secondary.main}`
   },
   title: {
-    color: theme.palette.primary.main
+    //color: theme.palette.primary.main
   },
-  author: {},
+  author: {
+    marginBottom: 0
+  },
+  type: {
+    marginTop: 0,
+    marginBottom: theme.spacing(2)
+  },
   desc: {
     marginTop: theme.spacing(1),
     paddingTop: theme.spacing(1),

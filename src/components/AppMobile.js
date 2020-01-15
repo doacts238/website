@@ -157,11 +157,13 @@ const styles = theme => ({
     padding: 0,
     minHeight: '100%',
     width: '100%',
-    flexGrow: 1
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default
   },
   content: {
     height: '100%',
-    width: '100%'
+    width: '100%',
+    backgroundColor: theme.palette.background.default
   },
   navDrawerPaper: {
     background: theme.app.palette.background.default,

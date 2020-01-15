@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { Typography, makeStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-//import pastorImage from '../images/PastorDavidBrown.png';
 import topImage from '../images/homeTop.jpg';
 
 import classNames from 'classnames';
@@ -15,55 +14,11 @@ const PageHome = ({ className }: Props) => {
 
   document.title = 'Do Acts 2:38!';
 
-  // const [anchorEl: Element, setAnchorEl: Function] = React.useState(null);
-  // const [msgIndex: Number, setMsgIndex: Function] = React.useState(-1);
-
-  // const messages = [
-  //   'Stop poking me!',
-  //   'Ouch! That hurts!',
-  //   'Leave me alone!',
-  //   'Go away!'
-  // ];
-
-  // const handleClick = event => {
-  //   setAnchorEl(anchorEl ? null : event.currentTarget);
-  //   setTimeout(() => setAnchorEl(null), 1250);
-
-  //   const ndx = (msgIndex + 1) % messages.length;
-  //   setMsgIndex(ndx);
-  // };
-
-  // const open = Boolean(anchorEl);
-  // const id = open ? 'simple-popper' : undefined;
-
-  // const message = messages[msgIndex];
   return (
     <Fragment>
       <img src={topImage} alt="Clouds over lake" className={classes.topImage} />
       <div className={classNames(className, classes.root)}>
-        <Typography component="div" variant="body2">
-          {/** /}
-        <div className={classes.calloutRight} style={{ textAlign: 'center' }}>
-          <div className={classes.textBox}>
-            <img
-              src={pastorImage}
-              alt="Pastor David A. Brown"
-              onClick={handleClick}
-            />
-            <div className={classes.calloutCaption}>
-              Pastor David A. Brown
-              <br />
-              <Typography variant="caption" style={{ fontStyle: 'italic' }}>
-                New Life Worship Center
-              </Typography>
-            </div>
-          </div>
-        </div>
-        <Popper id={id} open={open} anchorEl={anchorEl}>
-          <div className={classes.paper}>{message}</div>
-        </Popper>
-        {/**/}
-
+        <Typography component="div" variant="body2" color="textPrimary">
           <h1 style={{ marginTop: 0 }}>Welcome!</h1>
           <p>
             We at{' '}
@@ -148,42 +103,8 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3),
     paddingTop: theme.spacing(1),
     width: '100%',
-    height: '100%'
-  },
-  calloutRight: {
-    margin: 0,
-    padding: 0,
-    [theme.breakpoints.down('sm')]: {
-      width: '214px',
-      marginRight: 'auto',
-      marginBottom: theme.spacing(4)
-    },
-    [theme.breakpoints.up('md')]: {
-      float: 'right',
-      position: 'relative' /* fix IE peekaboo bug */
-    }
-  },
-  textBox: {
-    border: '1px dotted #55411C',
-    margin: '5px',
-    padding: '10px',
-    borderRadius: theme.spacing(1)
-  },
-  calloutCaption: {
-    borderTop: '1pt dotted #A8946F',
-    margin: 0,
-    marginTop: '5px',
-    padding: 0,
-    paddingTop: '5px'
-  },
-  paper: {
-    marginTop: '10px',
-    border: '2px solid darkred',
-    borderRadius: '10px',
-    padding: theme.spacing(1),
-    backgroundColor: theme.app.palette.background.default,
-    color: 'red',
-    fontWeight: 'bold'
+    height: '100%',
+    backgroundColor: theme.palette.background.default
   },
   topImage: {
     width: '100%',

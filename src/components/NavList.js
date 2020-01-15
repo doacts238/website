@@ -111,7 +111,7 @@ const NavList = (props: Props) => {
 const styles = theme => ({
   root: {},
   navIcon: {
-    color: theme.palette.primary.light,
+    color: theme.app.palette.icons.default, //theme.palette.primary.light,
     marginRight: theme.spacing(1)
   },
   hoverPointer: {

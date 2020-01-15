@@ -125,7 +125,8 @@ const styles = theme => ({
     minHeight: '100%',
     width: '100%',
     flexGrow: 1,
-    zIndex: 1
+    zIndex: 1,
+    backgroundColor: theme.palette.background.default
   },
   navListItem: {
     padding: theme.spacing(2),
