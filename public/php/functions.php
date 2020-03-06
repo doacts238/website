@@ -279,3 +279,35 @@ function buildRatingSelect($strName, $arrRatings, $nSelectedRating)
     $strReturn .= "</select>";
     return $strReturn;
 }
+
+function stringIsEmpty($strIn)
+{
+    $bReturn = true;
+    if (is_string($strIn)) {
+        $bReturn = empty($strIn);
+    }
+    return $bReturn;
+}
+
+function makeSermonFilename($strDate, $strService, $strQuality, $strExt, $strDefault = null)
+{
+    $strReturn = $strDefault;
+
+    //file_put_contents("/home/doacts5/testing.doacts238.org/php/makeSermonFilename.txt", print_r(array('strDate' => $strDate, 'dateIsString' => is_string($strDate), 'dateStringIsEmpty' => stringIsEmpty($strDate) ? "true" : "false", 'strService' => $strService, 'strQuality' => $strQuality, 'strExt' => $strExt)), FILE_APPEND);
+
+    if (stringIsEmpty($strExt)) {
+        $strExt = 'mp3';
+    }
+
+    //if (!stringIsEmpty($strDate) && !stringIsEmpty($strService)) {
+    $strReturn = strtoupper($strDate . '_' . str_replace(' ', '-', $strService));
+    if (!stringIsEmpty($strQuality)) {
+        $strReturn = $strReturn . '_' . $strQuality;
+    }
+    $strReturn = $strReturn . '.' . $strExt;
+    //}
+
+    //file_put_contents("/home/doacts5/testing.doacts238.org/php/makeSermonFilename.txt", print_r('strReturn = ' . $strReturn . "\n"), FILE_APPEND);
+
+    return $strReturn;
+}
