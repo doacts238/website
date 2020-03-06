@@ -4,7 +4,19 @@
 if (!isset($_SERVER["DOCUMENT_ROOT"])) {$_SERVER["DOCUMENT_ROOT"] = substr($_SERVER['SCRIPT_FILENAME'], 0, -strlen($_SERVER['PHP_SELF']) + 1);}
 
 include_once "{$_SERVER['DOCUMENT_ROOT']}/php/functions.php";
-//include_once "functions.php";
+include_once "functions.php";
+
+function formatResultRow(&$arrRow)
+{
+    foreach (array_keys($arrRow) as $strKey) {
+        if (isNull($arrRow[$strKey])) {
+            unset($arrRow[$strKey]);
+        }
+        // elseif (is_string($arrRow[$strKey])) {
+        //     $arrRow[$strKey] = addcslashes($arrRow[$strKey], "\"");
+        // }
+    }
+}
 
 function getAllAudioInfoFromDb($db, &$strError, $bIncludeHidden = false)
 {
@@ -60,12 +72,7 @@ function getAllAudioInfoFromDb($db, &$strError, $bIncludeHidden = false)
 
             $nRow = 1;
             while ($arrAudioInfo = mysql_fetch_assoc($result)) {
-                foreach (array_keys($arrAudioInfo) as $strKey) {
-                    if (isNull($arrAudioInfo[$strKey])) {
-                        unset($arrAudioInfo[$strKey]);
-                    }
-
-                }
+                formatResultRow($arrAudioInfo);
 
                 $arrReturn[$nRow++] = $arrAudioInfo;
             } // end while
@@ -131,12 +138,7 @@ function getShowableAudioEntriesFromDb(&$strError, $nMaxNumEntries = 25, $nMinRa
 
             $nRow = 1;
             while ($arrAudioInfo = mysql_fetch_assoc($result)) {
-                foreach (array_keys($arrAudioInfo) as $strKey) {
-                    if (isNull($arrAudioInfo[$strKey])) {
-                        unset($arrAudioInfo[$strKey]);
-                    }
-
-                }
+                formatResultRow($arrAudioInfo);
 
                 $bAddToResult = true;
                 if ($nRow > $nMaxNumEntries) {
@@ -214,12 +216,7 @@ function getAudioInfoEntryFromDb($db, $nAudioId, &$strError)
             $strError = sprintf("ERROR database query failed (%d:%s).", mysql_errno(), mysql_error());
         } else {
             while ($arrAudioInfo = mysql_fetch_assoc($result)) {
-                foreach (array_keys($arrAudioInfo) as $strKey) {
-                    if (isNull($arrAudioInfo[$strKey])) {
-                        unset($arrAudioInfo[$strKey]);
-                    }
-
-                }
+                formatResultRow($arrAudioInfo);
 
                 $arrReturn = $arrAudioInfo;
                 break; // should only return 1;
