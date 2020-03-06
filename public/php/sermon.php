@@ -27,7 +27,8 @@ $strFileSep = getFileSeparator();
 $strThisPage = getRealPath($_SERVER['PHP_SELF']);
 $strThisDir = dirname($strThisPage);
 //$strAudioDir = $strThisDir . $strFileSep . "audio";
-$strAudioDir = '/home/doacts5/public_html/sermons/';
+//$strAudioDir = '/home/doacts5/public_html/sermons/';
+$strAudioDir = '/home/doacts5/audio.doacts238.org/files/';
 $strError = "Success.";
 $strNoDesc = "(none)";
 
@@ -84,11 +85,19 @@ if ($arrAudioInfo == null) {
     $AUDIO_FILE_HIGH = getArrayValueOrDefault($arrAudioInfo, "AUDIO_FILE_HIGH", $AUDIO_FILE_HIGH);
     $AUDIO_FILE_LOW = getArrayValueOrDefault($arrAudioInfo, "AUDIO_FILE_LOW", $AUDIO_FILE_LOW);
 
+    $AUDIO_FILE = makeSermonFileName(getArrayValueOrDefault($arrAudioInfo, "AUDIO_DATE"),
+        getArrayValueOrDefault($arrAudioInfo, "AUDIO_SERVICE"),
+        getArrayValueOrDefault($arrAudioInfo, "AUDIO_QUALITY_HIGH"), 'mp3', null);
+
+    if (!stringIsEmpty($AUDIO_FILE)) {
+        $AUDIO_FILE_HIGH = $AUDIO_FILE;
+    }
+
     $strUrlHigh = getFullUrl(dirname($_SERVER['PHP_SELF']) . "/" . basename($AUDIO_FILE_HIGH));
     $strUrlLow = getFullUrl(dirname($_SERVER['PHP_SELF']) . "/" . basename($AUDIO_FILE_LOW));
     $strAudioDesc = trim(getArrayValueOrDefault($arrAudioInfo, 'AUDIO_DESC', $strNoDesc));
 
-    if (file_exists($strAudioDir . $AUDIO_FILE_HIGH) && file_exists($strAudioDir . $AUDIO_FILE_LOW)) {
+    if (file_exists($strAudioDir . $AUDIO_FILE_HIGH) && is_file($strAudioDir . $AUDIO_FILE_HIGH)) {
         $arrAudioInfo['AUDIO_FILE_HIGH'] = $AUDIO_FILE_HIGH;
         $arrAudioInfo['AUDIO_FILE_LOW'] = $AUDIO_FILE_LOW;
 
