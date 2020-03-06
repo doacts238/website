@@ -32,7 +32,8 @@ $strFileSep = getFileSeparator();
 $strThisPage = getRealPath($_SERVER['PHP_SELF']);
 $strThisDir = dirname($strThisPage);
 //$strAudioDir = $strThisDir . $strFileSep . "audio";
-$strAudioDir = '/home/doacts5/public_html/sermons/';
+//$strAudioDir = '/home/doacts5/public_html/sermons/';
+$strAudioDir = '/home/doacts5/audio.doacts238.org/files/';
 $strError = "Success.";
 $strNoDesc = "(none)";
 
@@ -72,6 +73,7 @@ if ($nShowAll != 0) {
 if ($arrAudioList == null) {
     print("Error getting sermon list: " . $strError . "\n");
 } else {
+    //file_put_contents('/home/doacts5/testing.doacts238.org/php/arrAudioList.txt', print_r($arrAudioList, true));
     $arrAudios = array_keys($arrAudioList);
     foreach ($arrAudios as $strKey) {
         $arrAudioInfo = arrayTrim($arrAudioList[$strKey]);
@@ -103,30 +105,42 @@ if ($arrAudioList == null) {
         $AUDIO_DESC = getArrayValueOrDefault($arrAudioInfo, "AUDIO_DESC", $AUDIO_DESC);
         $AUDIO_AUTHOR = getArrayValueOrDefault($arrAudioInfo, "AUDIO_AUTHOR", $AUDIO_AUTHOR);
         $AUDIO_LENGTH = getArrayValueOrDefault($arrAudioInfo, "AUDIO_LENGTH", $AUDIO_LENGTH);
-        $AUDIO_QUALITY_HIGH = getArrayValueOrDefault($arrAudioInfo, "AUDIO_QUALITY_HIGH", $AUDIO_QUALITY_HIGH);
+        $AUDIO_SERVICE = getArrayValueOrDefault($arrAudioInfo, "AUDIO_QUALITY_HIGH", $AUDIO_QUALITY_HIGH);
         $AUDIO_QUALITY_LOW = getArrayValueOrDefault($arrAudioInfo, "AUDIO_QUALITY_LOW", $AUDIO_QUALITY_LOW);
         $AUDIO_FILE_HIGH = getArrayValueOrDefault($arrAudioInfo, "AUDIO_FILE_HIGH", $AUDIO_FILE_HIGH);
         $AUDIO_FILE_LOW = getArrayValueOrDefault($arrAudioInfo, "AUDIO_FILE_LOW", $AUDIO_FILE_LOW);
+
+        $AUDIO_FILE = makeSermonFileName(getArrayValueOrDefault($arrAudioInfo, "AUDIO_DATE"),
+            getArrayValueOrDefault($arrAudioInfo, "AUDIO_SERVICE"),
+            getArrayValueOrDefault($arrAudioInfo, "AUDIO_QUALITY_HIGH"), 'mp3');
+
+        if (!stringIsEmpty($AUDIO_FILE)) {
+            $AUDIO_FILE_HIGH = $AUDIO_FILE;
+        }
 
         $strUrlHigh = getFullUrl(dirname($_SERVER['PHP_SELF']) . "/" . basename($AUDIO_FILE_HIGH));
         $strUrlLow = getFullUrl(dirname($_SERVER['PHP_SELF']) . "/" . basename($AUDIO_FILE_LOW));
         $strAudioDesc = trim(getArrayValueOrDefault($arrAudioInfo, 'AUDIO_DESC', $strNoDesc));
 
-        if (file_exists($strAudioDir . $AUDIO_FILE_HIGH) && file_exists($strAudioDir . $AUDIO_FILE_LOW)) {
+        if (file_exists($strAudioDir . $AUDIO_FILE_HIGH) && is_file($strAudioDir . $AUDIO_FILE_HIGH)) {
+            $arrAudioInfo['AUDIO_FILE'] = $AUDIO_FILE;
             $arrAudioInfo['AUDIO_FILE_HIGH'] = $AUDIO_FILE_HIGH;
             $arrAudioInfo['AUDIO_FILE_LOW'] = $AUDIO_FILE_LOW;
 
             $arrAudioInfo['AUDIO_ID'] = intval($arrAudioInfo['AUDIO_ID']);
             //$arrAudioInfo['AUDIO_TYPE_ID'] = intval($arrAudioInfo['AUDIO_TYPE_ID']);
             $arrAudioInfo['AUDIO_TYPE'] = $arrAudioTypes[intval($arrAudioInfo['AUDIO_TYPE_ID'])];
-            unset($arrAudioInfo['AUDIO_TYPE_ID']);
-            $arrAudioInfo['AUDIO_QUALITY_HIGH'] = intval($arrAudioInfo['AUDIO_QUALITY_HIGH']);
-            $arrAudioInfo['AUDIO_QUALITY_LOW'] = intval($arrAudioInfo['AUDIO_QUALITY_LOW']);
+            //$arrAudioInfo['AUDIO_QUALITY_HIGH'] = intval($arrAudioInfo['AUDIO_QUALITY_HIGH']);
+            //$arrAudioInfo['AUDIO_QUALITY_LOW'] = intval($arrAudioInfo['AUDIO_QUALITY_LOW']);
             //$arrAudioInfo['RATING_ID'] = intval($arrAudioInfo['RATING_ID']);
             $arrAudioInfo['RATING'] = $arrRatings[intval($arrAudioInfo['RATING_ID'])];
-            unset($arrAudioInfo['RATING_ID']);
             $arrAudioInfo['AUDIO_SHOW_ALWAYS'] = intval($arrAudioInfo['AUDIO_SHOW_ALWAYS']) != 0;
             $arrAudioInfo['AUDIO_HIDDEN'] = intval($arrAudioInfo['AUDIO_HIDDEN']) != 0;
+
+            unset($arrAudioInfo['AUDIO_TYPE_ID']);
+            unset($arrAudioInfo['RATING_ID']);
+            unset($arrAudioInfo['AUDIO_QUALITY_HIGH']);
+            unset($arrAudioInfo['AUDIO_QUALITY_LOW']);
 
             //$arrAudioListOut[intval($arrAudioInfo["AUDIO_ID"])] = $arrAudioInfo;
             array_push($arrAudioListOut, $arrAudioInfo);
