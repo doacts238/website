@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import {
   Typography,
   makeStyles,
@@ -26,6 +26,7 @@ import {
 
 import backendService from '../services/BackendService';
 import GridNoPadding from './GridNoPadding';
+import YouTube from 'react-youtube';
 
 type Props = {
   className?: string,
@@ -65,9 +66,18 @@ const PageSermonInfo = ({ className, match, location, history }: Props) => {
 
   document.title = `Do Acts 2:38 - ${sermon.AUDIO_TITLE}`;
 
-  //const sermonUrl = `https://doacts238.org/sermons/${sermon.AUDIO_FILE_HIGH}`;
   const sermonUrl = `https://audio.doacts238.org/files/${sermon.AUDIO_FILE_HIGH}`;
   const thisPageUrl = `https://testing.doacts238.org/sermon/${sermon.AUDIO_ID}`;
+  const youtubeId = sermon.AUDIO_YOUTUBE_ID;
+  let youtube = <Fragment></Fragment>;
+  if (youtubeId) {
+    youtube = (
+      <div>
+        <YouTube videoId={youtubeId} className={classes.video} />
+      </div>
+    );
+  }
+
   const shareIconSize = 24;
 
   return (
@@ -95,6 +105,8 @@ const PageSermonInfo = ({ className, match, location, history }: Props) => {
       <Typography variant="subtitle1" className={classes.length}>
         Length: {sermon.AUDIO_LENGTH}
       </Typography>
+
+      {youtube}
 
       <div className={classes.player}>
         <audio controls>
@@ -222,6 +234,11 @@ const useStyles = makeStyles(theme => ({
   },
   player: {
     marginTop: theme.spacing(3)
+  },
+  video: {
+    marginTop: theme.spacing(3),
+    width: '100%',
+    height: 'auto'
   },
   share: {
     marginTop: theme.spacing(2),

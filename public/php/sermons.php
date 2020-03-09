@@ -135,7 +135,7 @@ if ($arrAudioList == null) {
             //$arrAudioInfo['RATING_ID'] = intval($arrAudioInfo['RATING_ID']);
             $arrAudioInfo['RATING'] = $arrRatings[intval($arrAudioInfo['RATING_ID'])];
             $arrAudioInfo['AUDIO_SHOW_ALWAYS'] = intval($arrAudioInfo['AUDIO_SHOW_ALWAYS']) != 0;
-            $arrAudioInfo['AUDIO_HIDDEN'] = intval($arrAudioInfo['AUDIO_HIDDEN']) != 0;
+            //$arrAudioInfo['AUDIO_HIDDEN'] = intval($arrAudioInfo['AUDIO_HIDDEN']) != 0;
 
             unset($arrAudioInfo['AUDIO_TYPE_ID']);
             unset($arrAudioInfo['RATING_ID']);

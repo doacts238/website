@@ -104,14 +104,17 @@ if ($arrAudioInfo == null) {
         $arrAudioInfo['AUDIO_ID'] = intval($arrAudioInfo['AUDIO_ID']);
         //$arrAudioInfo['AUDIO_TYPE_ID'] = intval($arrAudioInfo['AUDIO_TYPE_ID']);
         $arrAudioInfo['AUDIO_TYPE'] = $arrAudioTypes[intval($arrAudioInfo['AUDIO_TYPE_ID'])];
-        unset($arrAudioInfo['AUDIO_TYPE_ID']);
-        $arrAudioInfo['AUDIO_QUALITY_HIGH'] = intval($arrAudioInfo['AUDIO_QUALITY_HIGH']);
-        $arrAudioInfo['AUDIO_QUALITY_LOW'] = intval($arrAudioInfo['AUDIO_QUALITY_LOW']);
+        //$arrAudioInfo['AUDIO_QUALITY_HIGH'] = intval($arrAudioInfo['AUDIO_QUALITY_HIGH']);
+        //$arrAudioInfo['AUDIO_QUALITY_LOW'] = intval($arrAudioInfo['AUDIO_QUALITY_LOW']);
         //$arrAudioInfo['RATING_ID'] = intval($arrAudioInfo['RATING_ID']);
         $arrAudioInfo['RATING'] = $arrRatings[intval($arrAudioInfo['RATING_ID'])];
-        unset($arrAudioInfo['RATING_ID']);
         $arrAudioInfo['AUDIO_SHOW_ALWAYS'] = intval($arrAudioInfo['AUDIO_SHOW_ALWAYS']) != 0;
-        $arrAudioInfo['AUDIO_HIDDEN'] = intval($arrAudioInfo['AUDIO_HIDDEN']) != 0;
+        //$arrAudioInfo['AUDIO_HIDDEN'] = intval($arrAudioInfo['AUDIO_HIDDEN']) != 0;
+
+        unset($arrAudioInfo['AUDIO_TYPE_ID']);
+        unset($arrAudioInfo['RATING_ID']);
+        unset($arrAudioInfo['AUDIO_QUALITY_HIGH']);
+        unset($arrAudioInfo['AUDIO_QUALITY_LOW']);
 
     }
 }
