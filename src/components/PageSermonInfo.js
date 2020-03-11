@@ -73,7 +73,10 @@ const PageSermonInfo = ({ className, match, location, history }: Props) => {
   if (youtubeId) {
     youtube = (
       <div>
-        <YouTube videoId={youtubeId} className={classes.video} />
+        <Typography variant="button">Video:</Typography>
+        <div>
+          <YouTube videoId={youtubeId} className={classes.video} />
+        </div>
       </div>
     );
   }
@@ -106,7 +109,6 @@ const PageSermonInfo = ({ className, match, location, history }: Props) => {
         Length: {sermon.AUDIO_LENGTH}
       </Typography>
 
-      <Typography variant="button">Video:</Typography>
       {youtube}
 
       <div className={classes.player}>
