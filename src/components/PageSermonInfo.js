@@ -106,13 +106,17 @@ const PageSermonInfo = ({ className, match, location, history }: Props) => {
         Length: {sermon.AUDIO_LENGTH}
       </Typography>
 
+      <Typography variant="button">Video:</Typography>
       {youtube}
 
       <div className={classes.player}>
-        <audio controls>
-          <source src={sermonUrl} type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
+        <Typography variant="button">Audio:</Typography>
+        <div>
+          <audio controls>
+            <source src={sermonUrl} type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </div>
       </div>
 
       <div className={classes.share}>
