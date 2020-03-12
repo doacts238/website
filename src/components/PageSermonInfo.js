@@ -72,11 +72,16 @@ const PageSermonInfo = ({ className, match, location, history }: Props) => {
   let youtube = <Fragment></Fragment>;
   if (youtubeId) {
     youtube = (
-      <div>
-        <Typography variant="button">Video:</Typography>
-        <div>
-          <YouTube videoId={youtubeId} className={classes.video} />
-        </div>
+      <div className={classes.videoPlayer}>
+        <Typography variant="button" component="div">
+          Video:
+        </Typography>
+        <YouTube
+          id="video"
+          videoId={youtubeId}
+          className={classes.youtube}
+          containerClassName={classes.youtubeContainer}
+        />
       </div>
     );
   }
@@ -111,7 +116,7 @@ const PageSermonInfo = ({ className, match, location, history }: Props) => {
 
       {youtube}
 
-      <div className={classes.player}>
+      <div className={classes.audioPlayer}>
         <Typography variant="button">Audio:</Typography>
         <div>
           <audio controls>
@@ -197,12 +202,12 @@ const PageSermonInfo = ({ className, match, location, history }: Props) => {
         </GridNoPadding>
       </div>
 
-      <Typography variant="subtitle1" className={classes.descLabel}>
-        Description:
-      </Typography>
-      <Typography variant="body1" className={classes.desc}>
-        {sermon.AUDIO_DESC}
-      </Typography>
+      <div className={classes.desc}>
+        <Typography variant="button">Description:</Typography>
+        <Typography variant="body1" className={classes.descText}>
+          {sermon.AUDIO_DESC}
+        </Typography>
+      </div>
     </div>
   );
 };
@@ -232,19 +237,31 @@ const useStyles = makeStyles(theme => ({
   author: {},
   date: {},
   length: {},
-  descLabel: {
+  desc: {
     marginTop: theme.spacing(3)
   },
-  desc: {
+  descText: {
     marginLeft: theme.spacing(3)
   },
-  player: {
+  audioPlayer: {
     marginTop: theme.spacing(3)
   },
-  video: {
-    marginTop: theme.spacing(3),
-    width: '100%',
-    height: 'auto'
+  videoPlayer: {
+    marginTop: theme.spacing(3)
+  },
+  youtube: {
+    border: 0,
+    height: '100%',
+    left: 0,
+    position: 'absolute',
+    top: 0,
+    width: '100%'
+  },
+  youtubeContainer: {
+    overflow: 'hidden',
+    // Calculated from the aspect ration of the content (in case of 16:9 it is 9/16= 0.5625)
+    paddingTop: '56.25%',
+    position: 'relative'
   },
   share: {
     marginTop: theme.spacing(2),
