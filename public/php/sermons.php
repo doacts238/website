@@ -114,7 +114,8 @@ if ($arrAudioList == null) {
             getArrayValueOrDefault($arrAudioInfo, "AUDIO_SERVICE"),
             getArrayValueOrDefault($arrAudioInfo, "AUDIO_QUALITY_HIGH"), 'mp3');
 
-        if (!stringIsEmpty($AUDIO_FILE)) {
+        if (!stringIsEmpty($AUDIO_FILE) &&
+            (!file_exists($strAudioDir . $AUDIO_FILE_HIGH) || !is_file($strAudioDir . $AUDIO_FILE_HIGH))) {
             $AUDIO_FILE_HIGH = $AUDIO_FILE;
         }
 
